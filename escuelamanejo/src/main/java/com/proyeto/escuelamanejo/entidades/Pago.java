@@ -16,7 +16,7 @@ import javax.validation.constraints.NotEmpty;
 public class Pago {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	@NotEmpty
 	@Column(name="Fecha_Pago")
 	private Date fechapago;
@@ -32,7 +32,7 @@ public class Pago {
 	public Pago() {}
 
 	public Pago(int id, @NotEmpty Date fechapago, @NotEmpty double abono, Contrato contrato) {
-		Id = id;
+		this.id = id;
 		this.fechapago = fechapago;
 		this.abono = abono;
 		this.contrato = contrato;
@@ -47,11 +47,11 @@ public class Pago {
 	//Getters && Setters
 	
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Date getFechapago() {

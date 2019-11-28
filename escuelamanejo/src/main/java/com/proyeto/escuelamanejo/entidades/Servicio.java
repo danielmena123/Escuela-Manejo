@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 public class Servicio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	@NotEmpty
 	@Column(name="Cantidad_Horas")
 	private int cantidadhoras;
@@ -30,38 +30,42 @@ public class Servicio {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IdVehiculo")
 		private Vehiculo vehiculo;
+	@Column(name="Estado_Servicio")
+	private int estado;
 	
 	//Builders
 	
 	public Servicio() {}
 
 	public Servicio(int id, @NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
-			@NotEmpty double precio, Vehiculo vehiculo) {
-		Id = id;
+			@NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
+		this.id = id;
 		this.cantidadhoras = cantidadhoras;
 		this.horaspracticas = horaspracticas;
 		this.horasteoricas = horasteoricas;
 		this.precio = precio;
 		this.vehiculo = vehiculo;
+		this.estado = estado;
 	}
 	
 	public Servicio(@NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
-			@NotEmpty double precio, Vehiculo vehiculo) {
+			@NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
 		this.cantidadhoras = cantidadhoras;
 		this.horaspracticas = horaspracticas;
 		this.horasteoricas = horasteoricas;
 		this.precio = precio;
 		this.vehiculo = vehiculo;
+		this.estado = estado;
 	}
 	
 	//Getters && Setters
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public int getCantidadhoras() {
@@ -102,6 +106,14 @@ public class Servicio {
 
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 	
 }

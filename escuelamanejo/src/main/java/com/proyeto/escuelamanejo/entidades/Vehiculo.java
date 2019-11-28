@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class Vehiculo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	@NotEmpty
 	@Column(name="Especifiacion_Vehiculo")
 	private String especifiacion;
@@ -21,32 +21,37 @@ public class Vehiculo {
 	@NotEmpty
 	@Column(name="Transmicion_Vehiculo")
 	private int transmicion;
+	@Column(name="Estado_Vehiculo")
+	private int estado;
+	
 	
 	//Builders
 	
 	public Vehiculo() {}
 
-	public Vehiculo(int id, @NotEmpty String especifiacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion) {
-		Id = id;
+	public Vehiculo(int id, @NotEmpty String especifiacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
+		this.id = id;
 		this.especifiacion = especifiacion;
 		this.tipovehiculo = tipovehiculo;
 		this.transmicion = transmicion;
+		this.estado = estado;
 	}
 	
-	public Vehiculo(@NotEmpty String especifiacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion) {
+	public Vehiculo(@NotEmpty String especifiacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
 		this.especifiacion = especifiacion;
 		this.tipovehiculo = tipovehiculo;
 		this.transmicion = transmicion;
+		this.estado = estado;
 	}
 	
 	//Getters && Setters
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getEspecifiacion() {
@@ -71,6 +76,14 @@ public class Vehiculo {
 
 	public void setTransmicion(int transmicion) {
 		this.transmicion = transmicion;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 	
 }

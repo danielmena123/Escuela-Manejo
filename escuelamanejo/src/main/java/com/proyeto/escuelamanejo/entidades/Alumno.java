@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 public class Alumno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	@NotEmpty
 	@Column(name="Nombre_Alumno")
 	private String nombre;
@@ -30,40 +30,44 @@ public class Alumno {
 	@NotEmpty
 	@Column(name="Direccion_Alumno")
 	private String direccion;
+	@Column(name="Estado_Alumno")
+	private int estado;
 	
 	//Builders
 	
 	public Alumno() {}
 
 	public Alumno(int id, @NotEmpty String nombre, @NotEmpty String apellido, @NotEmpty String dui,
-			@NotEmpty String telefono, @NotEmpty int edad, @NotEmpty String direccion) {
-		Id = id;
+			@NotEmpty String telefono, @NotEmpty int edad, @NotEmpty String direccion, @NotEmpty int estado) {
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dui = dui;
 		this.telefono = telefono;
 		this.edad = edad;
 		this.direccion = direccion;
+		this.estado = estado;
 	}
 	
 	public Alumno(@NotEmpty String nombre, @NotEmpty String apellido, @NotEmpty String dui,
-			@NotEmpty String telefono, @NotEmpty int edad, @NotEmpty String direccion) {
+			@NotEmpty String telefono, @NotEmpty int edad, @NotEmpty String direccion, @NotEmpty int estado) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dui = dui;
 		this.telefono = telefono;
 		this.edad = edad;
 		this.direccion = direccion;
+		this.estado = estado;
 	}
 	
 	//Getters && Setters
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -112,6 +116,14 @@ public class Alumno {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 	
 }
