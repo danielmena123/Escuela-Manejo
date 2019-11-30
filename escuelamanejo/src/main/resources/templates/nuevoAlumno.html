@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Index
+    Nuevo Alumno
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -34,13 +34,13 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/">
               <i class="material-icons">home</i>
               <p>Inicio</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/verAlumnos">
               <i class="material-icons">person</i>
               <p>Alumnos</p>
@@ -111,23 +111,81 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h2 class="card-title">INDEX</h4>
-            </div>
-            <div class="card-body">
-              <div id="typography">
-                <div class="card-title">
-                  <h2>index</h2>
-                </div>
                 <div class="container">
-					 <h1><u><s>TATY YO SERE EL INDEX, A MI MODIFICAME</h1>
-			    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+					 <div class="row">
+			            <div class="col-md-12">
+			              <div class="card">
+			                <div class="card-header card-header-info">
+			                  <h4 class="card-title">Nuevo Alumno</h4>
+			                  <p class="card-category">Por favor complete los campos requeridos</p>
+			                </div>
+			                <div class="card-body">
+			                  <form method="post" action="registrarAlumno" modelAttribute="alumno">
+			 					<div class="row">
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Nombre</label>
+			                          <input type="text" name="nombre" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>    
+			                    <div class="row">
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Apellido</label>
+			                          <input type="text" name="apellido" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">DUI o Carnet</label>
+			                          <input type="text" name="dui" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>                    	
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Telefono</label>
+			                          <input type="text" name="telefono" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Edad</label>
+			                          <input type="text" name="edad" class="form-control" inputmode="numeric">
+			                          <!-- <input type="text" th:field="*{edad}" class="form-control">   -->
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Direccion</label>
+			                          <input type="text" name="direccion" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        
+			                          
+			                          <input name="estado" value="1" type="hidden"></input>
+			                       
+			                      </div>
+			                    </div>
+			                    <button type="submit" class="btn btn-success">Registrar</button>
+			                    <div class="clearfix"></div>
+			                  </form>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
       </div>
       <footer class="footer">
         <div class="container-fluid">

@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.controladores;
-
+/**/
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ public class IntructorControlador {
 	RepoInstructor repo;
 	
 	//Ruta get/ (listado)
-	@GetMapping("/Instructores")
+	@GetMapping("/verInstructores")
 	public String inicio(Model model) {
 		model.addAttribute("instructores", repo.findAll());
-		return "";
+		return "verInstructores";
 	}
 	
 	//Ruta get/ (nuevo)

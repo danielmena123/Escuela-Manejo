@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.controladores;
-
+/**/
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +23,10 @@ public class PagoControlador {
 	RepoContrato repocontrato;
 	
 	//Ruta Get/ (listado)
-	@GetMapping("/Pagos")
+	@GetMapping("/verPagos")
 	public String listad(Model model) {
-		model.addAttribute("pago", repopago.findAll());
-		return "";
+		model.addAttribute("pagos", repopago.findAll());
+		return "verPagos";
 	}
 	
 	//Ruta Get/ (nuevo)

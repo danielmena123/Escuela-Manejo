@@ -6,15 +6,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-
+/**/
 @Entity
 public class Vehiculo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@NotEmpty
+	@Column(name="N_Placa")
+	private String placa;
+	@NotEmpty
 	@Column(name="Especifiacion_Vehiculo")
-	private String especifiacion;
+	private String especificacion;
 	@NotEmpty
 	@Column(name="Tipo_Vehiculo")
 	private int tipovehiculo;
@@ -29,16 +32,18 @@ public class Vehiculo {
 	
 	public Vehiculo() {}
 
-	public Vehiculo(int id, @NotEmpty String especifiacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
+	public Vehiculo(int id, @NotEmpty String placa, @NotEmpty String especificacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
 		this.id = id;
-		this.especifiacion = especifiacion;
+		this.placa = placa;
+		this.especificacion = especificacion;
 		this.tipovehiculo = tipovehiculo;
 		this.transmicion = transmicion;
 		this.estado = estado;
 	}
 	
-	public Vehiculo(@NotEmpty String especifiacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
-		this.especifiacion = especifiacion;
+	public Vehiculo(@NotEmpty String placa, @NotEmpty String especificacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
+		this.placa = placa;
+		this.especificacion = especificacion;
 		this.tipovehiculo = tipovehiculo;
 		this.transmicion = transmicion;
 		this.estado = estado;
@@ -53,13 +58,21 @@ public class Vehiculo {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getEspecifiacion() {
-		return especifiacion;
+	
+	public String getPlaca() {
+		return placa;
 	}
 
-	public void setEspecifiacion(String especifiacion) {
-		this.especifiacion = especifiacion;
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getEspecificacion() {
+		return especificacion;
+	}
+
+	public void setEspecifiacion(String especificacion) {
+		this.especificacion = especificacion;
 	}
 
 	public int getTipovehiculo() {

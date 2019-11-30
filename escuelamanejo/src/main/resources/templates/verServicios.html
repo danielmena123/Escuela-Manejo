@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Index
+    Ver Servicios
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -34,7 +34,7 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/">
               <i class="material-icons">home</i>
               <p>Inicio</p>
@@ -58,7 +58,7 @@
               <p>Automoviles</p>
             </a>
           </li>
-          <li class="nav-item  ">
+          <li class="nav-item active ">
             <a class="nav-link" href="/verServicios">
               <i class="material-icons">library_books</i>
               <p>Servicios</p>
@@ -114,15 +114,46 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h2 class="card-title">INDEX</h4>
+              <h2 class="card-title">Lista de Servicios</h4>
             </div>
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-                  <h2>index</h2>
+                  <h2>Servicios</h2>
                 </div>
                 <div class="container">
-					 <h1><u><s>TATY YO SERE EL INDEX, A MI MODIFICAME</h1>
+					 <table class="table table-hover table-bordered"> 
+					 	<thead>
+					 		<tr>
+					 			<th>N°</th>
+					 			<th>Nombre</th>
+					 			<th>N° Horas</th>
+					 			<th>Hora Practica</th>
+					 			<th>Hora Teorica</th>
+					 			<th>Precio</th>
+					 			<th>Vehiculo</th>
+					 			<th>Acciones</th>
+					 			
+					 		</tr>		 		
+					 	</thead>
+					 	<tbody>
+					 		<tr th:each="s : ${servicios}">
+					 			<td th:text="${s.id}"></td>
+					 			<td th:text="${s.nombre}"></td>
+					 			<td th:text="${s.cantidadhoras}"></td>
+					 			<td th:text="${s.horaspracticas}"></td>
+					 			<td th:text="${s.horasteoricas}"></td>
+					 			<td th:text="${s.precio}"></td>
+					 			<td th:each="i : ${s.vehiculo}" th:text="${i.placa}"></td>
+					 			
+					 			<td>
+			                        <!-- /editar/1 -->
+			                        <a th:href="@{'/editar/'+${s.id}}" class="btn btn-success">Edit</a> || 
+			                        <a th:href="@{'/eliminar/'+${s.id}}" class="btn btn-danger">Del</a>
+		                        </td>
+					 		</tr>
+					 	</tbody>
+					 </table>
 			    </div>
               </div>
             </div>

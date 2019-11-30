@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.entidades;
-
+/**/
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +15,9 @@ public class Servicio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@NotEmpty
+	@Column(name="Nombre")
+	private String nombre;
 	@NotEmpty
 	@Column(name="Cantidad_Horas")
 	private int cantidadhoras;
@@ -37,9 +40,10 @@ public class Servicio {
 	
 	public Servicio() {}
 
-	public Servicio(int id, @NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
+	public Servicio(int id,@NotEmpty String nombre, @NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
 			@NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
 		this.id = id;
+		this.nombre = nombre;
 		this.cantidadhoras = cantidadhoras;
 		this.horaspracticas = horaspracticas;
 		this.horasteoricas = horasteoricas;
@@ -48,8 +52,9 @@ public class Servicio {
 		this.estado = estado;
 	}
 	
-	public Servicio(@NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
+	public Servicio(@NotEmpty String nombre, @NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
 			@NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
+		this.nombre = nombre;
 		this.cantidadhoras = cantidadhoras;
 		this.horaspracticas = horaspracticas;
 		this.horasteoricas = horasteoricas;
@@ -67,6 +72,15 @@ public class Servicio {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 
 	public int getCantidadhoras() {
 		return cantidadhoras;

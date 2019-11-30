@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import com.sun.istack.NotNull;
+/**/
 @Entity
 public class Alumno {
 	@Id
@@ -24,7 +26,7 @@ public class Alumno {
 	@NotEmpty
 	@Column(name="Telefono_Alumno")
 	private String telefono;
-	@NotEmpty
+	@NotNull
 	@Column(name="Edad_Alumno")
 	private int edad;
 	@NotEmpty

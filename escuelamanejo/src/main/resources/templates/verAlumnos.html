@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Index
+    Listado Alumnos
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -34,13 +34,13 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/">
               <i class="material-icons">home</i>
               <p>Inicio</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/verAlumnos">
               <i class="material-icons">person</i>
               <p>Alumnos</p>
@@ -114,15 +114,46 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h2 class="card-title">INDEX</h4>
+              <h2 class="card-title">Lista de Alumn@s</h4>
             </div>
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-                  <h2>index</h2>
+					<a href="nuevoAlumno" class="btn btn-primary">Nuevo Alumno</a>
                 </div>
                 <div class="container">
-					 <h1><u><s>TATY YO SERE EL INDEX, A MI MODIFICAME</h1>
+					 <table class="table table-hover table-bordered"> 
+					 	<thead>
+					 		<tr>
+					 			<th>N°</th>
+					 			<th>Nombres</th>
+					 			<th>Apellidos</th>
+					 			<th>N° DUI o Carnet</th>
+					 			<th>Telefono</th>
+					 			<th>Edad</th>
+					 			<th>Direccion</th>
+					 			<th>Acciones</th>
+					 			
+					 		</tr>		 		
+					 	</thead>
+					 	<tbody>
+					 		<tr th:each="a : ${alumnos}">
+					 			<td th:text="${a.id}"></td>
+					 			<td th:text="${a.nombre}"></td>
+					 			<td th:text="${a.apellido}"></td>
+					 			<td th:text="${a.dui}"></td>
+					 			<td th:text="${a.telefono}"></td>
+					 			<td th:text="${a.edad}"></td>
+					 			<td th:text="${a.direccion}"></td>
+					 			
+					 			<td>
+			                        <!-- /editar/1 -->
+			                        <a th:href="@{'/editar/'+${a.id}}" class="btn btn-success">Edit</a> || 
+			                        <a th:href="@{'/eliminar/'+${a.id}}" class="btn btn-danger">Del</a>
+		                        </td>
+					 		</tr>
+					 	</tbody>
+					 </table>
 			    </div>
               </div>
             </div>
