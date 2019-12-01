@@ -145,7 +145,7 @@
 					 			<td>
 			                        <!-- /editar/1 -->
 			                        <a th:href="@{'/editar/'+${v.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/eliminar/'+${v.id}}" class="btn btn-danger">Del</a>
+			                        <a th:href="@{'/EliminarVehiculo/'+${v.id}}" class="btn btn-danger" th:if="${v.estado == 1}">Del</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>

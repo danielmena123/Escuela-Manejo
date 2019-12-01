@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Instructor {
@@ -24,12 +25,13 @@ public class Instructor {
 	@NotEmpty
 	@Column(name="Telefono_Instructor")
 	private String telefono;
-	@NotEmpty
+	@NotNull
 	@Column(name="Edad_Instructor")
 	private int edad;
 	@NotEmpty
 	@Column(name="Direccion_Instructor")
 	private String direccion;
+	@NotNull
 	@Column(name="Estado_Instructor")
 	private int estado;
 	

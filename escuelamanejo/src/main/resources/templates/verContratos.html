@@ -119,7 +119,7 @@
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-                  <h2>Contrato</h2>
+                  <a href="nuevoContrato" class="btn btn-primary">Nuevo Contrato</a>
                 </div>
                 <div class="container">
 					 <table class="table table-hover table-bordered"> 
@@ -153,8 +153,8 @@
 					 			<td>
 			                        <!-- /editar/1 -->
 			                        <a th:href="@{'/editar/'+${contrato.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/eliminar/'+${contrato.id}}" class="btn btn-danger">Del</a>|| 
-			                        <a th:href="@{'/eliminar/'+${contrato.id}}" class="btn btn-success">Pag</a>
+			                        <a th:href="@{'/EliminarContrato/'+${contrato.id}}" class="btn btn-danger" th:if="${contrato.estado == 1}">Del</a>|| 
+			                        <a th:href="@{'/pagos/'+${contrato.id}}" class="btn btn-info">Pag</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>

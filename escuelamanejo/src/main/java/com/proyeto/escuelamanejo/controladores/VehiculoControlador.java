@@ -68,6 +68,6 @@ public class VehiculoControlador {
 		Vehiculo vehiculo = repo.findById(id).get();
 		vehiculo.setEstado(2);
 		repo.save(vehiculo);
-		return "redirect:/Vehiculos";
+		return "redirect:/verAutomoviles";
 	}
 }

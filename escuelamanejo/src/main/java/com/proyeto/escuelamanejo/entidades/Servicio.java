@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Servicio {
@@ -18,21 +19,22 @@ public class Servicio {
 	@NotEmpty
 	@Column(name="Nombre")
 	private String nombre;
-	@NotEmpty
+	@NotNull
 	@Column(name="Cantidad_Horas")
 	private int cantidadhoras;
-	@NotEmpty
+	@NotNull
 	@Column(name="Horas_Practicas")
 	private int horaspracticas;
-	@NotEmpty
+	@NotNull
 	@Column(name="Horas_Teoricas")
 	private int horasteoricas;
-	@NotEmpty
+	@NotNull
 	@Column(name="Precio_Servicio")
 	private double precio;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IdVehiculo")
 		private Vehiculo vehiculo;
+	@NotNull
 	@Column(name="Estado_Servicio")
 	private int estado;
 	

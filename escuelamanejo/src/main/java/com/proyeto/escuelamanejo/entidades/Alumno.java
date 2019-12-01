@@ -32,6 +32,7 @@ public class Alumno {
 	@NotEmpty
 	@Column(name="Direccion_Alumno")
 	private String direccion;
+	@NotNull
 	@Column(name="Estado_Alumno")
 	private int estado;
 	

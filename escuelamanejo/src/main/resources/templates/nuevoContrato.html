@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Listado Alumnos
+    Nuevo Contrato
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -40,7 +40,7 @@
               <p>Inicio</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="/verAlumnos">
               <i class="material-icons">person</i>
               <p>Alumnos</p>
@@ -64,7 +64,7 @@
               <p>Servicios</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/verContratos">
               <i class="material-icons">bubble_chart</i>
               <p>Contratos</p>
@@ -111,54 +111,99 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h2 class="card-title">Lista de Alumn@s</h4>
-            </div>
-            <div class="card-body">
-              <div id="typography">
-                <div class="card-title">
-					<a href="nuevoAlumno" class="btn btn-primary">Nuevo Alumno</a>
-                </div>
                 <div class="container">
-					 <table class="table table-hover table-bordered"> 
-					 	<thead>
-					 		<tr>
-					 			<th>N°</th>
-					 			<th>Nombres</th>
-					 			<th>Apellidos</th>
-					 			<th>N° DUI o Carnet</th>
-					 			<th>Telefono</th>
-					 			<th>Edad</th>
-					 			<th>Direccion</th>
-					 			<th>Acciones</th>
-					 			
-					 		</tr>		 		
-					 	</thead>
-					 	<tbody>
-					 		<tr th:each="a : ${alumnos}">
-					 			<td th:text="${a.id}"></td>
-					 			<td th:text="${a.nombre}"></td>
-					 			<td th:text="${a.apellido}"></td>
-					 			<td th:text="${a.dui}"></td>
-					 			<td th:text="${a.telefono}"></td>
-					 			<td th:text="${a.edad}"></td>
-					 			<td th:text="${a.direccion}"></td>
-					 			
-					 			<td>
-			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/editar/'+${a.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/EliminarAlumno/'+${a.id}}" class="btn btn-danger"th:if="${a.estado == 1}">Del</a>
-		                        </td>
-					 		</tr>
-					 	</tbody>
-					 </table>
-			    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+					 <div class="row">
+			            <div class="col-md-12">
+			              <div class="card">
+			                <div class="card-header card-header-info">
+			                  <h4 class="card-title">Nuevo Contrato</h4>
+			                  <p class="card-category">Por favor complete los campos requeridos</p>
+			                </div>
+			                <div class="card-body">
+			                  <form method="post" action="registrarContrato" modelAttribute="contrato">
+			 					<div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          	<select name="alumno" class="form-control">
+				                          <option>Seleccionar Alumno</option>
+				                         <option th:each="a : ${alumnos}" th:value="${a.id}" th:text="${a.nombre + a.apellido}" th:if="${a.estado == 1}"/>
+				                  		</select>
+			                        </div>
+			                      </div>
+			                    </div>    
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <input type="date" name="fechacontrato" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <input type="time" name="horainicio" id="horainicio" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>                    	
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <input type="time" name="horafinal" id="horafinal" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          	<select name="instructor" class="form-control">
+				                          	<option>Seleccionar Instructor</option>
+				                         	<option th:each="i : ${instructores}" th:value="${i.id}" th:text="${i.nombre + i.apellido}" th:if="${i.estado == 1}"/>
+				                  		</select>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          	<select name="servicio" class="form-control" id="service">
+				                          	<option>Seleccionar Servicio</option>
+				                         	<option th:each="s : ${servicios}" th:value="${s.id}" th:text="${s.nombre}" th:if="${s.estado == 1}"/>
+				                  		</select>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">N° Clases</label>
+			                          <input type="text" name="plazo" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Monto Final</label>
+			                          <input type="text" name="montofinal" id="montofinal" class="form-control" disabled>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        
+			                          
+			                          <input name="estado" value="1" type="hidden"></input>
+			                       
+			                      </div>
+			                    </div>
+			                    <button type="submit" class="btn btn-success">Registrar</button>
+			                    <div class="clearfix"></div>
+			                  </form>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
       </div>
       <footer class="footer">
         <div class="container-fluid">
@@ -309,6 +354,17 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
+  	$('#service').on('change', function(){
+  		$.ajax({
+  			url: 'numeroclase',
+  			type: 'POST',
+  			data: { horainicio = $("#horainicio").val(), horafinal = $("#horafinal").val() , servicio = $("#service").val() }
+  			success: function(e){
+  				$('#montofinal').val(e);
+  			}
+  		});
+  	});
+  
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');

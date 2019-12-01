@@ -75,6 +75,6 @@ public class AlumnoControlador {
 		Alumno alumno = repo.findById(id).get();
 		alumno.setEstado(2);
 		repo.save(alumno);
-		return "redirect:/Alumnos";
+		return "redirect:/verAlumnos";
 	}
 }

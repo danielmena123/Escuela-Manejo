@@ -55,11 +55,11 @@ public class IntructorControlador {
 	}
 	
 	//Ruta get/ (eliminar)
-	@GetMapping("/EliminarInstructor")
+	@GetMapping("/EliminarInstructor/{id}")
 	public String eliminar(@PathVariable("id")int id, Model model) {
 		Instructor instructor = repo.findById(id).get();
 		instructor.setEstado(2);
 		repo.save(instructor);
-		return "redirect:/Instructores";
+		return "redirect:/verInstructores";
 	}
 }

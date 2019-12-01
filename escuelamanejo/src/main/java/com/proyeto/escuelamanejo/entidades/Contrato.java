@@ -12,25 +12,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Contrato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@NotEmpty
 	@Column(name="Fecha_Contrato")
 	private Date fechacontrato;
-	@NotEmpty
+	@NotNull
 	@Column(name="Monto_Final")
 	private double montofinal;
-	@NotEmpty
 	@Column(name="Hora_Inicio")
 	private Time horainicio;
-	@NotEmpty
 	@Column(name="Hora_Final")
 	private Time horafinal;
-	@NotEmpty
+	@NotNull
 	@Column(name="Plazo_Dias")
 	private int plazo;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -42,7 +40,8 @@ public class Contrato {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IdAlumno")
 		private Alumno alumno;
-	@Column(name="Estado_Vehiculo")
+	@NotNull
+	@Column(name="Estado_Contrato")
 	private int estado;
 	
 	//Builders

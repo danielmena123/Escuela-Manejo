@@ -149,7 +149,7 @@
 					 			<td>
 			                        <!-- /editar/1 -->
 			                        <a th:href="@{'/editar/'+${i.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/eliminar/'+${i.id}}" class="btn btn-danger">Del</a>
+			                        <a th:href="@{'/EliminarInstructor/'+${i.id}}" class="btn btn-danger" th:if="${i.estado == 1}">Del</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>

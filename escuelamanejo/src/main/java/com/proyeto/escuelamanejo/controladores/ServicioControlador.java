@@ -57,10 +57,11 @@ public class ServicioControlador {
 	}
 	
 	//Ruta get/ (eliminar)
+	@GetMapping("/EliminarServicio/{id}")
 	public String eliminar(@PathVariable("id")int id) {
 		Servicio servicio = reposervicio.findById(id).get();
 		servicio.setEstado(2);
 		reposervicio.save(servicio);
-		return "redirect:/Servicios";
+		return "redirect:/verServicios";
 	}
 }

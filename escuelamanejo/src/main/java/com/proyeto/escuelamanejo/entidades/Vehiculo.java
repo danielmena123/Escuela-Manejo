@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 /**/
 @Entity
 public class Vehiculo {
@@ -18,12 +19,13 @@ public class Vehiculo {
 	@NotEmpty
 	@Column(name="Especifiacion_Vehiculo")
 	private String especificacion;
-	@NotEmpty
+	@NotNull
 	@Column(name="Tipo_Vehiculo")
 	private int tipovehiculo;
-	@NotEmpty
+	@NotNull
 	@Column(name="Transmicion_Vehiculo")
 	private int transmicion;
+	@NotNull
 	@Column(name="Estado_Vehiculo")
 	private int estado;
 	
