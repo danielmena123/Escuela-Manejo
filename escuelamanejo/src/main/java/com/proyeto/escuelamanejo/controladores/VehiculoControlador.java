@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.controladores;
-
+/**/
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ public class VehiculoControlador {
 	RepoVehiculo repo;
 	
 	// Ruta get / (listado)
-	@GetMapping("/Vehiculos")
+	@GetMapping("/verAutomoviles")
 	public String inicio(Model model) {
 		//Listado de alumnos
 		model.addAttribute("vehiculos", repo.findAll());
-		return "";
+		return "verAutomoviles";
 	}
 	
 	// Ruta get /nuevo

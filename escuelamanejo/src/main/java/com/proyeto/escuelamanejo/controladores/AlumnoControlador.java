@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.controladores;
-
+/**/
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proyeto.escuelamanejo.entidades.Alumno;
 import com.proyeto.escuelamanejo.repositorios.RepoAlumno;
@@ -20,31 +21,34 @@ public class AlumnoControlador {
 	RepoAlumno	repo;
 	
 	// Ruta get / (listado)
-	@GetMapping("/Alumnos")
+	@GetMapping("/verAlumnos")
 	public String inicio(Model model) {
 		//Listado de alumnos
 		model.addAttribute("alumnos", repo.findAll());
-		return "";
+		return "verAlumnos";
 	}
 	
 	// Ruta get /nuevo
-	@GetMapping("/NuevoAlumno")
+	@GetMapping("/nuevoAlumno")
 	public String nuevo() {
-		return "";
+		return "nuevoAlumno";
 	}
 	
-	
 	// Ruta post / registrar
-	@PostMapping("/RegistrarAlumno")
-	public String registrar( 
+	@PostMapping("/registrarAlumno")
+	public String registrarAlumno( 
 			@Valid @ModelAttribute("alumno")Alumno alumno,
-			BindingResult result ) {
+			BindingResult result, RedirectAttributes redirectAttrs ) {
 		
 		repo.save(alumno);
 		
-		return "redirect:/Alumnos";					
+		redirectAttrs.addFlashAttribute("mensaje", "Alumno Agregado correctamente")
+        .addFlashAttribute("clase", "success");
+		
+		return "redirect:/nuevoAlumno";					
 	}
 	
+
 	// Ruta get /editar/{id}
 	@GetMapping("/EditarAlumno/{id}")
 	public String editar(@PathVariable("id")int id,Model model) {
