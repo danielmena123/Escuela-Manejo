@@ -121,20 +121,24 @@
 					 		<tr>
 					 			<th>N° Contrato</th>
 					 			<th>Fecha Contrato</th>
+					 			<th>Hora Inicio</th>
+					 			<th>Hora Final</th>
 					 			<th>Monto</th>
+					 			<th>Plazo</th>
 					 			<th>Servicio</th>
-					 			<th>Horario</th>
 					 			<th>Instructor</th>
 					 			<th>Alumno</th>
 					 		</tr>		 		
 					 	</thead>
 					 	<tbody>
 					 		<tr th:each="contrato : ${contratos}">
-					 			<td th:text="${contrato.Id}"></td>
+					 			<td th:text="${contrato.id}"></td>
 					 			<td th:text="${contrato.fechacontrato}"></td>
+					 			<td th:text="${contrato.horainicio}"></td>
+					 			<td th:text="${contrato.horafinal}"></td>
 					 			<td th:text="${contrato.montofinal}"></td>
+					 			<td th:text="${contrato.plazo}"></td>
 					 			<td th:text="${contrato.servicio.Id}"></td>
-					 			<td th:text="${contrato.horario.Id}"></td>
 					 			<td th:text="${contrato.instructor.Id}"></td>
 					 			<td th:text="${contrato.alumno.Id}"></td>
 					 		</tr>
