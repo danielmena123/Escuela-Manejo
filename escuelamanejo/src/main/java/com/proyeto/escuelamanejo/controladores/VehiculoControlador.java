@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proyeto.escuelamanejo.entidades.Vehiculo;
 import com.proyeto.escuelamanejo.repositorios.RepoVehiculo;
@@ -29,45 +30,54 @@ public class VehiculoControlador {
 	}
 	
 	// Ruta get /nuevo
-	@GetMapping("/NuevoVehiculo")
-	public String nuevo() {
-		return "";
-	}
-	
-	
-	// Ruta post / registrar
-	@PostMapping("/RegistrarVehiculo")
-	public String registrar(@Valid @ModelAttribute("vehiculo")Vehiculo vehiculo, BindingResult result ) {
+		@GetMapping("/nuevoVehiculo")
+		public String nuevo() {
+			return "nuevoAuto";
+		}
 		
-		repo.save(vehiculo);
 		
-		return "redirect:/Vehiculos";					
-	}
+		// Ruta post / registrar
+		@PostMapping("/registrarVehiculo")
+		public String registrar(@Valid @ModelAttribute("vehiculo")Vehiculo vehiculo, BindingResult result ) {
+			
+			repo.save(vehiculo);
+			
+			return "redirect:/verAutomoviles";					
+		}
+		
 	
 	// Ruta get /editar/{id}
-	@GetMapping("/EditarVehiculo/{id}")
+	@GetMapping("/editarVehiculo/{id}")
 	public String editar(@PathVariable("id")int id,Model model) {
 		model.addAttribute("vehiculo", repo.findById(id));
-		return "";
+		return "editarAuto";
 	}
 	
 	
 	// Ruta post /editar
 	
-	@PostMapping("/ActualizarVehiculo")
-	public String actualizar(@Valid @ModelAttribute("vehiculo")Vehiculo vehiculo, BindingResult result ) {
+	@PostMapping("/actualizarAuto")
+	public String actualizar(@Valid @ModelAttribute("vehiculo")Vehiculo vehiculo, BindingResult result,RedirectAttributes redirectAttrs ) {
 		
 		repo.save(vehiculo);
+		redirectAttrs
+        .addFlashAttribute("mensaje", "Vehiculo Modificado")
+        .addFlashAttribute("clase", "primary");
 		
-		return "redirect:/Vehiculoss";		
+		return "redirect:/verAutomoviles";		
 	}
 	
 	// Ruta get /eliminar/{id}
-	@GetMapping("/EliminarVehiculo/{id}")
-	public String eliminar(@PathVariable("id")int id) {
+	@GetMapping("/eliminarVehiculo/{id}")
+	public String eliminar(@PathVariable("id")int id, RedirectAttributes redirectAttrs) {
 		Vehiculo vehiculo = repo.findById(id).get();
 		vehiculo.setEstado(2);
 		repo.save(vehiculo);
+		
+		redirectAttrs
+        .addFlashAttribute("mensaje", "Vehiculo Eliminado(inactivo)")
+        .addFlashAttribute("clase", "primary");
+		
 		return "redirect:/verAutomoviles";
 	}
 }

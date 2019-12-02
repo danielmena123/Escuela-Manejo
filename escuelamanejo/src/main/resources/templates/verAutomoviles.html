@@ -119,8 +119,14 @@
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-                  <h2>Vehiculos</h2>
+					<a href="nuevoVehiculo" class="btn btn-primary">Nuevo Automovil</a>
                 </div>
+                <a href="/verAutomoviles">
+                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+				     th:text="${mensaje}"
+				     class="alert">
+				</div>
+				</a>
                 <div class="container">
 					 <table class="table table-hover table-bordered"> 
 					 	<thead>
@@ -138,14 +144,17 @@
 					 		<tr th:each="v : ${vehiculos}">
 					 			<td th:text="${v.id}"></td>
 					 			<td th:text="${v.placa}"></td>
-					 			<td th:text="${v.especificacion}"></td>
-					 			<td th:text="${v.tipovehiculo}"></td>
-					 			<td th:text="${v.transmicion}"></td>
+					 			<td th:text="${v.descripcion}"></td>
+					 			<td th:text="Sedan" th:if="${v.tipovehiculo == 1}"> </td>
+					 			<td th:text="Pickup" th:if="${v.tipovehiculo == 2}"> </td>
+					 			<td th:text="Estandar" th:if="${v.transmicion == 1}"> </td>
+					 			<td th:text="Automatica" th:if="${v.transmicion == 2}"> </td>
+					 			
 					 			
 					 			<td>
 			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/editar/'+${v.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/EliminarVehiculo/'+${v.id}}" class="btn btn-danger" th:if="${v.estado == 1}">Del</a>
+			                        <a th:href="@{'/editarVehiculo/'+${v.id}}" class="btn btn-success">Edit</a> || 
+			                        <a th:href="@{'/eliminarVehiculo/'+${v.id}}" class="btn btn-danger" th:if="${v.estado == 1}">Del</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>
