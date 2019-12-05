@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Ver Instructores
+    Editar Alumno
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -46,13 +46,13 @@
               <p>Alumnos</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/verInstructores">
               <i class="material-icons">supervised_user_circle</i>
               <p>Instructores</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/verAutomoviles">
               <i class="material-icons">bubble_chart</i>
               <p>Automoviles</p>
@@ -111,60 +111,82 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h2 class="card-title">Lista de Instructores</h4>
-            </div>
-            <div class="card-body">
-              <div id="typography">
-                <div class="card-title">
-                  <a href="nuevoInstructor" class="btn btn-primary">Nuevo Instructor</a>
-                </div>
-                <a href="/verInstructores">
-	                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
-					     th:text="${mensaje}"
-					     class="alert">
-					</div>
-				</a>
                 <div class="container">
-					 <table class="table table-hover table-bordered"> 
-					 	<thead>
-					 		<tr>
-					 			<th>N°</th>
-					 			<th>Nombres</th>
-					 			<th>Apellidos</th>
-					 			<th>N° DUI o Carnet</th>
-					 			<th>Telefono</th>
-					 			<th>Edad</th>
-					 			<th>Direccion</th>
-					 			<th>Acciones</th>
-					 			
-					 		</tr>		 		
-					 	</thead>
-					 	<tbody>
-					 		<tr th:each="i : ${instructores}">
-					 			<td th:text="${i.id}"></td>
-					 			<td th:text="${i.nombre}"></td>
-					 			<td th:text="${i.apellido}"></td>
-					 			<td th:text="${i.dui}"></td>
-					 			<td th:text="${i.telefono}"></td>
-					 			<td th:text="${i.edad}"></td>
-					 			<td th:text="${i.direccion}"></td>
-					 			
-					 			<td>
-			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/EditarInstructor/'+${i.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/EliminarInstructor/'+${i.id}}" class="btn btn-danger" th:if="${i.estado == 1}">Del</a>
-		                        </td>
-					 		</tr>
-					 	</tbody>
-					 </table>
-			    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+					 <div class="row">
+			            <div class="col-md-12">
+			              <div class="card">
+			                <div class="card-header card-header-info">
+			                  <h4 class="card-title">Modificar Alumno</h4>
+			                  <p class="card-category">Por favor complete los campos requeridos</p>
+			                </div>
+			                <div class="card-body">
+			                  <form method="post" action="/ActualizarAlumno" modelAttribute="alumno">
+			 					<div class="row">
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Nombre</label>
+			                          <input type="hidden" th:field="${alumno.id}"  class="form-control">
+			                          <input type="text" th:field="${alumno.nombre}" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>    
+			                    <div class="row">
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Apellido</label>
+			                          <input type="text" th:field="${alumno.apellido}" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-12">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">DUI o Carnet</label>
+			                          <input type="text" th:field="${alumno.dui}" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>                    	
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Telefono</label>
+			                          <input type="text" th:field="${alumno.telefono}" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Edad</label>
+			                          <input type="text" th:field="${alumno.edad}" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Direccion</label>
+			                          <input type="text" th:field="${alumno.direccion}" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        
+			                          <select th:field="${alumno.estado}" class="form-control">
+				                         <option  th:value="1">Activo</option>
+				                         <option  th:value="2">Inicactivo</option>
+				                  	  </select>
+			                      </div>
+			                    </div>
+			                    <button type="submit" class="btn btn-success">Modificar Alumno</button>
+			                    <div class="clearfix"></div>
+			                  </form>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
       </div>
       <footer class="footer">
         <div class="container-fluid">
