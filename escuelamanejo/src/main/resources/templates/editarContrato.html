@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Ver Pagos
+    Nuevo Contrato
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -17,6 +17,7 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 </head>
 
 <body class="">
@@ -40,7 +41,7 @@
               <p>Inicio</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="/verAlumnos">
               <i class="material-icons">person</i>
               <p>Alumnos</p>
@@ -64,13 +65,13 @@
               <p>Servicios</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/verContratos">
               <i class="material-icons">bubble_chart</i>
               <p>Contratos</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/verPagos">
               <i class="material-icons">money</i>
               <p>Pagos</p>
@@ -111,47 +112,83 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h2 class="card-title">Lista de Pagos</h4>
-            </div>
-            <div class="card-body">
-              <div id="typography">
-                <div class="card-title">
-                  <a th:href="@{'/nuevoPago/'+${contrato.id}}" class="btn btn-primary">Nuevo Pago</a>
-                </div>
                 <div class="container">
-					 <table class="table table-hover table-bordered"> 
-					 	<thead>
-					 		<tr>
-					 			<th>N°</th>
-					 			<th>Fecha Pago</th>
-					 			<th>Abono</th>
-					 			<th>N° Contrato</th>
-					 			<th>Acciones</th>
-					 			
-					 		</tr>		 		
-					 	</thead>
-					 	<tbody>
-					 		<tr th:each="p : ${pagos}"}>
-					 			<td th:text="${p.id}"></td>
-					 			<td th:text="${p.fechapago}"></td>
-					 			<td th:text="${p.abono}"></td>
-					 			<td th:each="i : ${p.contrato}" th:text="${i.id}"></td>
-					 			
-					 			<td>
-			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/editar/'+${p.id}}" class="btn btn-success">Edit</a>
-		                        </td>
-					 		</tr>
-					 	</tbody>
-					 </table>
-			    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+					 <div class="row">
+			            <div class="col-md-12">
+			              <div class="card">
+			                <div class="card-header card-header-info">
+			                  <h4 class="card-title">Editar Contrato</h4>
+			                  <p class="card-category">Por favor complete los campos requeridos</p>
+			                </div>
+			                <div class="card-body">
+			                  <form method="post" action="/ActualizarContrato" modelAttribute="contrato">
+			 					<div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Alumno</label>
+			                          <input type="text" th:field="${contrato.alumno.nombre}" name="alumno"class="form-control" disabled>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Hora Inicio</label>
+			                        <br>
+			                          <input type="Time" name="horainicio"  id="horainicio" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>                    	
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Hora Final</label>
+			                        <br>
+			                          <input type="Time"  name="horafinal" id="horafinal" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          	<select name="instructor" class="form-control">
+				                          	<option>Seleccionar Instructor</option>
+				                         	<option th:each="i : ${instructores}" th:value="${i.id}" th:text="${i.nombre + i.apellido}" th:if="${i.estado == 1}"/>
+				                  		</select>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Servicio</label>
+			                          <input type="text" th:field="${contrato.servicio.nombre}" name="servicio" class="form-control" disabled>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          	<select name="estado" class="form-control">
+				                         	<option value="1">Activo</option>
+				                         	<option value="2">Inactivo</option>
+				                  		</select>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                       		<input type="hidden" th:field="${contrato.id}" class="form-control" name="id">
+			                      </div>
+			                    </div>
+			                    <button type="submit" class="btn btn-success">Actualizar</button>
+			                    <div class="clearfix"></div>
+			                  </form>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
       </div>
       <footer class="footer">
         <div class="container-fluid">
@@ -301,7 +338,9 @@
   <script src="../assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
-  <script>
+  
+  <script type="text/javascript">
+  
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');

@@ -1,8 +1,11 @@
 package com.proyeto.escuelamanejo.entidades;
+import java.util.ArrayList;
 /**/
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 import java.sql.Time;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Contrato {
@@ -24,13 +31,12 @@ public class Contrato {
 	@NotNull
 	@Column(name="Monto_Final")
 	private double montofinal;
+	@DateTimeFormat(pattern = "HH:mm")
 	@Column(name="Hora_Inicio")
 	private Time horainicio;
+	@DateTimeFormat(pattern = "HH:mm")
 	@Column(name="Hora_Final")
 	private Time horafinal;
-	@NotNull
-	@Column(name="Plazo_Dias")
-	private int plazo;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IdServicio")
 		private Servicio servicio;
@@ -43,20 +49,21 @@ public class Contrato {
 	@NotNull
 	@Column(name="Estado_Contrato")
 	private int estado;
+	@OneToMany(mappedBy = "contrato",cascade = CascadeType.ALL)
+	private List<Pago> pagos = new ArrayList<Pago>();	
 	
 	//Builders
 	
 	public Contrato() {}
 	
 	public Contrato(int id, @NotEmpty Date fechacontrato, @NotEmpty double montofinal, @NotEmpty Time horainicio,
-			@NotEmpty Time horafinal, @NotEmpty int plazo, Servicio servicio, Instructor instructor, Alumno alumno,
+			@NotEmpty Time horafinal, Servicio servicio, Instructor instructor, Alumno alumno,
 			int estado) {
 		this.id = id;
 		this.fechacontrato = fechacontrato;
 		this.montofinal = montofinal;
 		this.horainicio = horainicio;
 		this.horafinal = horafinal;
-		this.plazo = plazo;
 		this.servicio = servicio;
 		this.instructor = instructor;
 		this.alumno = alumno;
@@ -64,13 +71,12 @@ public class Contrato {
 	}
 	
 	public Contrato(@NotEmpty Date fechacontrato, @NotEmpty double montofinal, @NotEmpty Time horainicio,
-			@NotEmpty Time horafinal, @NotEmpty int plazo, Servicio servicio, Instructor instructor, Alumno alumno,
+			@NotEmpty Time horafinal, Servicio servicio, Instructor instructor, Alumno alumno,
 			int estado) {
 		this.fechacontrato = fechacontrato;
 		this.montofinal = montofinal;
 		this.horainicio = horainicio;
 		this.horafinal = horafinal;
-		this.plazo = plazo;
 		this.servicio = servicio;
 		this.instructor = instructor;
 		this.alumno = alumno;
@@ -143,20 +149,20 @@ public class Contrato {
 		this.horafinal = horafinal;
 	}
 
-	public int getPlazo() {
-		return plazo;
-	}
-
-	public void setPlazo(int plazo) {
-		this.plazo = plazo;
-	}
-
 	public int getEstado() {
 		return estado;
 	}
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public List<Pago> getPagos() {
+		return pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
 	}
 	
 }

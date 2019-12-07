@@ -29,6 +29,9 @@ public class Servicio {
 	@Column(name="Horas_Teoricas")
 	private int horasteoricas;
 	@NotNull
+	@Column(name="Numero_Clases")
+	private int clases;
+	@NotNull
 	@Column(name="Precio_Servicio")
 	private double precio;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -43,23 +46,25 @@ public class Servicio {
 	public Servicio() {}
 
 	public Servicio(int id,@NotEmpty String nombre, @NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
-			@NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
+			@NotEmpty int clases, @NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
 		this.id = id;
 		this.nombre = nombre;
 		this.cantidadhoras = cantidadhoras;
 		this.horaspracticas = horaspracticas;
 		this.horasteoricas = horasteoricas;
+		this.clases = clases;
 		this.precio = precio;
 		this.vehiculo = vehiculo;
 		this.estado = estado;
 	}
 	
 	public Servicio(@NotEmpty String nombre, @NotEmpty int cantidadhoras, @NotEmpty int horaspracticas, @NotEmpty int horasteoricas,
-			@NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
+			@NotEmpty int clases, @NotEmpty double precio, Vehiculo vehiculo, @NotEmpty int estado) {
 		this.nombre = nombre;
 		this.cantidadhoras = cantidadhoras;
 		this.horaspracticas = horaspracticas;
 		this.horasteoricas = horasteoricas;
+		this.clases = clases;
 		this.precio = precio;
 		this.vehiculo = vehiculo;
 		this.estado = estado;
@@ -130,6 +135,14 @@ public class Servicio {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+
+	public int getClases() {
+		return clases;
+	}
+
+	public void setClases(int clases) {
+		this.clases = clases;
 	}
 	
 }

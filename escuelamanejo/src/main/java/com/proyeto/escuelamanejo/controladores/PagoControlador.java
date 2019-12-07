@@ -24,8 +24,8 @@ public class PagoControlador {
 	
 	//Ruta Get/ (listado)
 	@GetMapping("/verPagos")
-	public String listad(Model model) {
-		model.addAttribute("pagos", repopago.findAll());
+	public String listad(@PathVariable("id")int id, Model model) {
+		//model.addAttribute("pagos", repopago.findAllById(ids))
 		return "verPagos";
 	}
 	

@@ -130,6 +130,7 @@
 					 			<th>N° Horas</th>
 					 			<th>Hora Practica</th>
 					 			<th>Hora Teorica</th>
+					 			<th>Numero Clases</th>
 					 			<th>Precio</th>
 					 			<th>Vehiculo</th>
 					 			<th>Acciones</th>
@@ -143,6 +144,7 @@
 					 			<td th:text="${s.cantidadhoras}"></td>
 					 			<td th:text="${s.horaspracticas}"></td>
 					 			<td th:text="${s.horasteoricas}"></td>
+					 			<td th:text="${s.clases}"></td>
 					 			<td th:text="${s.precio}"></td>
 					 			<td th:each="i : ${s.vehiculo}" th:text="${i.placa}"></td>
 					 			

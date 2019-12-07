@@ -130,7 +130,6 @@
 					 			<th>Monto</th>
 					 			<th>Hora Inicio</th>
 					 			<th>Hora Final</th>
-					 			<th>Plazo dias</th>
 					 			<th>Servicio</th>
 					 			<th>Instructor</th>
 					 			<th>Alumno</th>
@@ -141,20 +140,19 @@
 					 	<tbody>
 					 		<tr th:each="contrato : ${contratos}">
 					 			<td th:text="${contrato.id}"></td>
-					 			<td th:text="${contrato.fechacontrato}"></td>
+					 			<td th:text="${#dates.format(contrato.fechacontrato, 'dd-MM-yyyy')}"></td>
 					 			<td th:text="${contrato.montofinal}"></td>
-					 			<td th:text="${contrato.horainicio}"></td>
-					 			<td th:text="${contrato.horafinal}"></td>
-					 			<td th:text="${contrato.plazo}"></td>
+					 			<td th:text="${#dates.format(contrato.horainicio, 'HH: mm')}"></td>
+					 			<td th:text="${#dates.format(contrato.horafinal, 'HH: mm')}"></td>
 					 			<td th:each="i : ${contrato.servicio}" th:text="${i.nombre}"></td>
 					 			<td th:each="i : ${contrato.instructor}" th:text="${i.nombre}"></td>
 					 			<td th:each="i : ${contrato.alumno}" th:text="${i.nombre}"></td>
 					 			
 					 			<td>
 			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/editar/'+${contrato.id}}" class="btn btn-success">Edit</a> || 
+			                        <a th:href="@{'/EditarContrato/'+${contrato.id}}" class="btn btn-success">Edit</a> || 
 			                        <a th:href="@{'/EliminarContrato/'+${contrato.id}}" class="btn btn-danger" th:if="${contrato.estado == 1}">Del</a>|| 
-			                        <a th:href="@{'/pagos/'+${contrato.id}}" class="btn btn-info">Pag</a>
+			                        <a th:href="@{'/verPagosContrato/'+${contrato.id}}" class="btn btn-info">Pag</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>
