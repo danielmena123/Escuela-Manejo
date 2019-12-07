@@ -27,31 +27,31 @@ public class IntructorControlador {
 	}
 	
 	//Ruta get/ (nuevo)
-	@GetMapping("/NuevoInstructor")
+	@GetMapping("/nuevoInstructor")
 	public String nuevo(Model model) {
 		
-		return "";
+		return "nuevoInstructor";
 	}
 	
 	//Ruta post/ (registrar)
 	@PostMapping("/RegistrarInstructor")
 	public String registrar(@Valid @ModelAttribute("instructor")Instructor instructor,BindingResult result) {
 		repo.save(instructor);
-		return "redirect:/Instructores";
+		return "redirect:/verInstructores";
 	}
 	
 	//Ruta get/ (editar)
 	@GetMapping("/EditarInstructor/{id}")
 	public String editar(@PathVariable("id")int id, Model model) {
 		model.addAttribute("instructor", repo.findById(id));
-		return "";
+		return "editarInstructor";
 	}
 	
 	//Ruta post/ (actualizar)
 	@PostMapping("/ActualizarInstructor")
 	public String actualizar(@Valid @ModelAttribute("instructor")Instructor instructor , BindingResult result) {
 		repo.save(instructor);
-		return "redirect:/Instructores";
+		return "redirect:/verInstructores";
 	}
 	
 	//Ruta get/ (eliminar)
