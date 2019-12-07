@@ -45,7 +45,7 @@ public class AlumnoControlador {
 		redirectAttrs.addFlashAttribute("mensaje", "Alumno Agregado correctamente")
         .addFlashAttribute("clase", "success");
 		
-		return "redirect:/nuevoAlumno";					
+		return "redirect:/verAlumnos";					
 	}
 	
 
@@ -53,7 +53,7 @@ public class AlumnoControlador {
 	@GetMapping("/EditarAlumno/{id}")
 	public String editar(@PathVariable("id")int id,Model model) {
 		model.addAttribute("alumno", repo.findById(id));
-		return "";
+		return "editarAlumno";
 	}
 	
 	
@@ -66,7 +66,7 @@ public class AlumnoControlador {
 		
 		repo.save(alumno);
 		
-		return "redirect:/Alumnos";		
+		return "redirect:/verAlumnos";		
 	}
 	
 	// Ruta get /eliminar/{id}

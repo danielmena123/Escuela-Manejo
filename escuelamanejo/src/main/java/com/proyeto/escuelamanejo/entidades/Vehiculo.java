@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-/**/
+
+import com.sun.istack.NotNull;
+
 @Entity
 public class Vehiculo {
 	@Id
@@ -16,16 +17,15 @@ public class Vehiculo {
 	@NotEmpty
 	@Column(name="N_Placa")
 	private String placa;
-	@NotEmpty
+	
 	@Column(name="Especifiacion_Vehiculo")
-	private String especificacion;
+	private String descripcion;
 	@NotNull
 	@Column(name="Tipo_Vehiculo")
 	private int tipovehiculo;
 	@NotNull
 	@Column(name="Transmicion_Vehiculo")
 	private int transmicion;
-	@NotNull
 	@Column(name="Estado_Vehiculo")
 	private int estado;
 	
@@ -34,18 +34,18 @@ public class Vehiculo {
 	
 	public Vehiculo() {}
 
-	public Vehiculo(int id, @NotEmpty String placa, @NotEmpty String especificacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
+	public Vehiculo(int id, @NotEmpty String placa, String descripcion, @NotNull int tipovehiculo, @NotNull int transmicion, @NotNull int estado) {
 		this.id = id;
 		this.placa = placa;
-		this.especificacion = especificacion;
+		this.descripcion = descripcion;
 		this.tipovehiculo = tipovehiculo;
 		this.transmicion = transmicion;
 		this.estado = estado;
 	}
 	
-	public Vehiculo(@NotEmpty String placa, @NotEmpty String especificacion, @NotEmpty int tipovehiculo, @NotEmpty int transmicion, @NotEmpty int estado) {
+	public Vehiculo(@NotEmpty String placa, String descripcion, @NotNull int tipovehiculo, @NotNull int transmicion, @NotNull int estado) {
 		this.placa = placa;
-		this.especificacion = especificacion;
+		this.descripcion = descripcion;
 		this.tipovehiculo = tipovehiculo;
 		this.transmicion = transmicion;
 		this.estado = estado;
@@ -69,12 +69,12 @@ public class Vehiculo {
 		this.placa = placa;
 	}
 
-	public String getEspecificacion() {
-		return especificacion;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setEspecifiacion(String especificacion) {
-		this.especificacion = especificacion;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public int getTipovehiculo() {
