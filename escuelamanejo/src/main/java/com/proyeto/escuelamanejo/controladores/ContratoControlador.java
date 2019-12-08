@@ -144,14 +144,34 @@ public class ContratoControlador {
 	
 	//Ruta Post/ (registrar)
 	@RequestMapping(value = "/registrarPago", method = RequestMethod.POST)
-	public String registrarpago(@Valid @ModelAttribute("pago")Pago pago, Model model, BindingResult result) {
+	public String registrarpago(@RequestParam(value="abono") String abono, @RequestParam(value="contrato")int id, Model model) {
+		Pago pago = new Pago();
 		Date date = new Date();		
+		pago.setAbono(Double.valueOf(abono));
+		pago.setContrato(repocontrato.findById(id).get());
 		pago.setFechapago(date);
-		repopago.save(pago);
 		
-		model.addAttribute("pagos", repocontrato.findById(pago.getContrato().getId()).get().getPagos());
-		model.addAttribute("contrato",repocontrato.findById(pago.getContrato().getId()).get());
-		return "verPagos";
+		double deposito = 0.00;
+		double contrato = repocontrato.findById(id).get().getMontofinal();
+		
+		java.util.List<Pago> pagos = repocontrato.findById(id).get().getPagos();
+        for (Pago item : pagos) {
+			deposito += item.getAbono();
+		}
+		double resultado = contrato - deposito - Double.valueOf(abono);
+		
+		if (resultado == 0) {
+			Contrato contrat = repocontrato.findById(id).get();
+			contrat.setEstado(3);
+			repopago.save(pago);
+			repocontrato.save(contrat);
+		}
+		else if (resultado > 0) {
+			repopago.save(pago);
+		}
+		model.addAttribute("pagos", repocontrato.findById(id).get().getPagos());
+		model.addAttribute("contrato",repocontrato.findById(id).get());
+		return "redirect:/verPagosContrato/"+String.valueOf(id)+"";
 	}
 	
 	//Saldo
@@ -169,5 +189,40 @@ public class ContratoControlador {
         
 		return String.valueOf(SaldoAnterior);
 	}
+	
+	//POST/ ActualizarPago
+	/**@RequestMapping(value = "/actualizarPago", method = RequestMethod.POST)
+	public String actualizarpago(@RequestParam(value="abono") String abono, @RequestParam(value="id") int id, Model model) {
+		Pago pago = repopago.findById(id).get();
+		double deposito = 0.00;
+		double contrato = repocontrato.findById(pago.getContrato().getId()).get().getMontofinal();
+		java.util.List<Pago> pagos = repocontrato.findById(pago.getContrato().getId()).get().getPagos();
+        for (Pago item : pagos) {
+			deposito += item.getAbono();
+		}
+		double resultado = contrato - deposito + Double.valueOf(abono);
+		Contrato contrat = repocontrato.findById(pago.getContrato().getId()).get();
+		
+		if (resultado == pago.getContrato().getMontofinal()) {
+			contrat.setEstado(1);
+			pago.setAbono(0);
+			repopago.save(pago);
+			repocontrato.save(contrat);
+		}
+		else if (resultado < pago.getContrato().getMontofinal()) {
+			pago.setAbono(resultado - pago.getAbono() + Double.valueOf(abono));
+			repopago.save(pago);
+		}
+		model.addAttribute("pagos", repocontrato.findById(pago.getContrato().getId()).get().getPagos());
+		model.addAttribute("contrato",repocontrato.findById(pago.getContrato().getId()).get());
+		return "verPagos";
+	}
+	
+	//GET/ EditarPago
+	@GetMapping("/editarPago/{id}")
+	public String editarpago(@PathVariable("id")int id, Model model) {
+		model.addAttribute("pago", repopago.findById(id).get());
+		return "editarPago";
+	}**/
 
 }

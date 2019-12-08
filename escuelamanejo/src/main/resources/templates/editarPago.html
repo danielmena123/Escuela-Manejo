@@ -111,11 +111,11 @@
 			            <div class="col-md-12">
 			              <div class="card">
 			                <div class="card-header card-header-info">
-			                  <h4 class="card-title">Nuevo Pago</h4>
+			                  <h4 class="card-title">Editar Pago</h4>
 			                  <p class="card-category">Por favor complete los campos requeridos</p>
 			                </div>
 			                <div class="card-body">
-			                  <form th:method="post" action="/registrarPago" modelAttribute="pago">
+			                  <form th:method="post" action="/actualizarPago" modelAttribute="pago">
 			                    <div class="row">
 			                      <div class="col-md-5">
 			                        <div class="form-group">
@@ -146,11 +146,11 @@
 			                    <div class="row">
 			                      <div class="col-md-6">
 			                        
-			                          <input id="contrato" name="contrato" th:value="${contrato.id}" type="hidden"/>
-			                       
+			                          <input name="id" th:value="${pago.id}" type="hidden"/>
+			                       	<input id="contrato" th:value="${pago.contrato.id}" type="hidden" />
 			                      </div>
 			                    </div>
-			                    <button type="submit" class="btn btn-success">Registrar</button>
+			                    <button type="submit" class="btn btn-success">Actualizar</button>
 			                    <div class="clearfix"></div>
 			                  </form>
 			                </div>
@@ -326,7 +326,7 @@
       var sldant = parseFloat($('#saldoanterior').val());
       var abono = parseFloat($('#abono').val());
       var total = 0.00;
-      total = sldant - abono;
+      total = sldant + abono;
       $('#saldoactual').val(total.toFixed(2));
   });
   

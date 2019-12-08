@@ -64,7 +64,7 @@
               <p>Servicios</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/verContratos">
               <i class="material-icons">bubble_chart</i>
               <p>Contratos</p>
@@ -95,7 +95,7 @@
             <div class="card-body">
               <div id="typography">
                 <div class="card-title">
-                  <a th:href="@{'/nuevoPago/'+${contrato.id}}" class="btn btn-primary">Nuevo Pago</a>
+                  <a th:href="@{'/nuevoPago/'+${contrato.id}}" class="btn btn-primary" th:if="${contrato.estado != 3}">Nuevo Pago</a>
                 </div>
                 <div class="container">
 					 <table class="table table-hover table-bordered"> 
@@ -104,22 +104,17 @@
 					 			<th>N°</th>
 					 			<th>Fecha Pago</th>
 					 			<th>Abono</th>
-					 			<th>N° Contrato</th>
-					 			<th>Acciones</th>
-					 			
+					 			<th>Saldo Actual</th>					 					 			
+					 			<th>Saldo Anterior</th>
 					 		</tr>		 		
 					 	</thead>
 					 	<tbody>
 					 		<tr th:each="p : ${pagos}"}>
 					 			<td th:text="${p.id}"></td>
-					 			<td th:text="${p.fechapago}"></td>
+					 			<td th:text="${#dates.format(p.fechapago, 'dd-MM-yyyy')}"></td>
 					 			<td th:text="${p.abono}"></td>
-					 			<td th:each="i : ${p.contrato}" th:text="${i.id}"></td>
-					 			
-					 			<td>
-			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/editar/'+${p.id}}" class="btn btn-success">Edit</a>
-		                        </td>
+					 			<td th:text="${contrato.montofinal = contrato.montofinal - p.abono}"></td>
+					 			<td th:text="${contrato.montofinal + p.abono}">></td>
 					 		</tr>
 					 	</tbody>
 					 </table>

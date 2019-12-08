@@ -126,7 +126,7 @@
 					 			
 					 			<td>
 			                        <!-- /editar/1 -->
-			                        <a th:href="@{'/EditarContrato/'+${contrato.id}}" class="btn btn-success">Edit</a> || 
+			                        <a th:href="@{'/EditarContrato/'+${contrato.id}}" class="btn btn-success" th:if="${contrato.estado != 3}">Edit</a> || 
 			                        <a th:href="@{'/EliminarContrato/'+${contrato.id}}" class="btn btn-danger" th:if="${contrato.estado == 1}">Del</a>|| 
 			                        <a th:href="@{'/verPagosContrato/'+${contrato.id}}" class="btn btn-info">Pag</a>
 		                        </td>

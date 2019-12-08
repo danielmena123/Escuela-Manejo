@@ -11,16 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Pago {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@NotEmpty
+	@NotNull
 	@Column(name="Fecha_Pago")
 	private Date fechapago;
-	@NotEmpty
+	@NotNull
 	@Column(name="Abono_Contrato")
 	private double abono;
 	@ManyToOne(fetch = FetchType.LAZY)
