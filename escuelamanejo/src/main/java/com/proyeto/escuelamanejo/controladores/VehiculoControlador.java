@@ -21,7 +21,7 @@ public class VehiculoControlador {
 	@Autowired
 	RepoVehiculo repo;
 	
-	// Ruta get / (listado)
+	// Ruta get    / (listado)
 	@GetMapping("/verAutomoviles")
 	public String inicio(Model model) {
 		//Listado de alumnos

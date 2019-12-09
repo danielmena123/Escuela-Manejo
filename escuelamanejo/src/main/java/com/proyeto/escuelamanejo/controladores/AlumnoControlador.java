@@ -20,7 +20,7 @@ public class AlumnoControlador {
 	@Autowired
 	RepoAlumno	repo;
 	
-	// Ruta get / (listado)
+	// Ruta get    / (listado)
 	@GetMapping("/verAlumnos")
 	public String inicio(Model model) {
 		//Listado de alumnos
