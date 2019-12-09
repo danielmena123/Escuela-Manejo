@@ -30,38 +30,63 @@ public class ServicioControlador {
 	}
 	
 	//Ruta get/ (nuevo)
-	@GetMapping("/NuevoServicio")
-	public String nuevo() {
-		return "";
+	@GetMapping("/nuevoServicio")
+	public String nuevo(Model model) {
+		model.addAttribute("vehiculos", repovehiculo.findAll());
+		return "nuevoServicio";
 	}
 	
 	//Ruta post/ (registrar)
-	@PostMapping("/RegistrarServicio")
+	@PostMapping("/registrarServicio")
 	public String registrar(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
 		reposervicio.save(servicio);
-		return "redirect:/Servicios";
+		return "redirect:/verServicios";
 	}
 	
-	//Ruta get/ (editar)
-	@GetMapping("/EditarServicio/{id}")
-	public String editar(@PathVariable("id")int id ) {
-		reposervicio.findById(id);
-		return "";
+	/* //Ruta get/ (editar)
+	@GetMapping("/editarServicio/{id}")
+	public String editar(@PathVariable("id")int id, Model model ) {
+		model.addAttribute("servicio", reposervicio.findById(id));
+		model.addAttribute("vehiculos", repovehiculo.findAll());
+		return "editarServicio";
 	}
 	
 	//Ruta post/ (actualizar)
-	@PostMapping("/ActualizarServicio")
+	@PostMapping("/actualizarServicio")
 	public String actualizar(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
 		reposervicio.save(servicio);
-		return "redirect:/Servicios";
+		return "redirect:/verServicios";
 	}
 	
 	//Ruta get/ (eliminar)
-	@GetMapping("/EliminarServicio/{id}")
+	@GetMapping("/eliminarServicio/{id}")
 	public String eliminar(@PathVariable("id")int id) {
 		Servicio servicio = reposervicio.findById(id).get();
 		servicio.setEstado(2);
 		reposervicio.save(servicio);
 		return "redirect:/verServicios";
-	}
+	}  */
+	//Ruta get/ (editar)
+		@GetMapping("/editarServicio/{id}")
+		public String editar(@PathVariable("id")int id, Model model ) {
+			model.addAttribute("servicio", reposervicio.findById(id));
+			model.addAttribute("vehiculos", repovehiculo.findAll());
+			return "editarServicio";
+		}
+		
+		//Ruta post/ (actualizar)
+		@PostMapping("/actualizarServicio")
+		public String actualizar(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
+			reposervicio.save(servicio);
+			return "redirect:/verServicios";
+		}
+		
+		//Ruta get/ (eliminar)
+		@GetMapping("/eliminarServicio/{id}")
+		public String eliminar(@PathVariable("id")int id) {
+			Servicio servicio = reposervicio.findById(id).get();
+			servicio.setEstado(2);
+			reposervicio.save(servicio);
+			return "redirect:/verServicios";
+		}
 }
