@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.controladores;
-/**/
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
