@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Ver Vehiculos
+    Eliminar Vehiculo
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -70,6 +70,12 @@
               <p>Contratos</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/verPagos">
+              <i class="material-icons">money</i>
+              <p>Pagos</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -105,98 +111,76 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="card">
-            <div class="card-header card-header-primary">
-              <h2 class="card-title">Lista de Vehiculos</h4>
-            </div>
-            <div class="card-body">
-              <div id="typography">
-                <div class="card-title">
-					<a href="nuevoVehiculo" class="btn btn-primary">Nuevo Automovil</a>
-                </div>
-                <a href="/verAutomoviles">
-                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
-				     th:text="${mensaje}"
-				     class="alert">
-				</div>
-				</a>
                 <div class="container">
-					 <table class="table table-hover table-bordered"> 
-					 	<thead>
-					 		<tr class="table-success">
-					 			<th>N°</th>
-					 			<th>N° Placa</th>
-					 			<th>Descripcion</th>
-					 			<th>Tipo</th>
-					 			<th>Transmision</th>
-					 			<th>Acciones</th>
-					 			
-					 		</tr>		 		
-					 	</thead>
-					 	<tbody>
-					 		<tr th:each="v : ${vehiculos}" th:if="${v.estado == 1}" > <!--      class="table-danger"     -->
-					 			<td th:text="${v.id}"></td>
-					 			<td th:text="${v.placa}"></td>
-					 			<td th:text="${v.descripcion}"></td>
-					 			<td th:text="Sedan" th:if="${v.tipovehiculo == 1}"> </td>
-					 			<td th:text="Pickup" th:if="${v.tipovehiculo == 2}"> </td>
-					 			<td th:text="Estandar" th:if="${v.transmicion == 1}"> </td>
-					 			<td th:text="Automatica" th:if="${v.transmicion == 2}"> </td>
-					 			<td>
-			                        <a th:href="@{'/editarVehiculo/'+${v.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/eliminarVehiculo/'+${v.id}}" class="btn btn-danger" th:if="${v.estado == 1}">Del</a>
-		                        </td>
-					 		</tr>
-					 	</tbody>
-					 </table>
-			    </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header card-header-danger">
-              <h2 class="card-title">Lista de Vehiculos Inactivos(Eliminados)</h4>
-            </div>
-            <div class="card-body">
-              <div id="typography">
-                <div class="card-title">
-                </div>
-                <div class="container">
-					 <table class="table table-hover table-bordered"> 
-					 	<thead>
-					 		<tr class="table-danger">
-					 			<th>N°</th>
-					 			<th>N° Placa</th>
-					 			<th>Descripcion</th>
-					 			<th>Tipo</th>
-					 			<th>Transmision</th>
-					 			<th>Estado</th>
-					 			<th>Accion</th>
-					 		</tr>		 		
-					 	</thead>
-					 	<tbody>
-					 		<tr th:each="v : ${vehiculos}" th:if="${v.estado == 2}" > <!--th:if="${v.estado == 1}"      class="table-danger"     -->
-					 			<td th:text="${v.id}"></td>
-					 			<td th:text="${v.placa}"></td>
-					 			<td th:text="${v.descripcion}"></td>
-					 			<td th:text="Sedan" th:if="${v.tipovehiculo == 1}"> </td>
-					 			<td th:text="Pickup" th:if="${v.tipovehiculo == 2}"> </td>
-					 			<td th:text="Estandar" th:if="${v.transmicion == 1}"> </td>
-					 			<td th:text="Automatica" th:if="${v.transmicion == 2}"> </td>
-					 			<td th:text="Inactivo"></td>
-					 			<td >
-			                       <a th:href="@{'/editarVehiculo/'+${v.id}}" class="btn btn-success">Edit</a>
-			                        <!--  <a th:href="@{'/eliminarVehiculo/'+${v.id}}" class="btn btn-danger" th:if="${v.estado == 1}">Del</a>   -->
-		                        </td>
-					 		</tr>
-					 	</tbody>
-					 </table>
-			    </div>
-              </div>
-            </div>
-          </div>
-        </div>
+					 <div class="row">
+			            <div class="col-md-12">
+			              <div class="card">
+			                <div class="card-header card-header-danger">
+			                  <h4 class="card-title">Eliminar Vehiculo</h4>
+			                </div>
+			                <div class="card-body">
+			                  <form method="post" action="/delVehiculo" modelAttribute="vehiculo">
+			                  <div class="row col-md-12">
+			                  	<div class="col-md-1" style="margin-left:430px">
+			                  		<div class="form-group">
+			                  		<label class="bmd-label-floating">Id</label>
+			                  		<input type="hidden" th:field="${vehiculo.id}"  class="form-control">
+			                  		<input type="text" th:field="${vehiculo.id}"  class="form-control" disabled>
+			                  		</div>
+			                  	</div>
+			                  </div>
+			 					<div class="row col-md-12">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Nº Placa</label>
+			                          <input type="text" th:field="${vehiculo.placa}" class="form-control" disabled>
+			                        </div>
+			                      </div>
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Especificacion</label>
+			                          <input type="text" th:field="${vehiculo.descripcion}" class="form-control" disabled>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row col-md-12">
+			                      <div class="col-md-4">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Tipo de Vehiculo</label>
+			                          <select th:field="${vehiculo.tipovehiculo}" class="form-control" disabled>
+				                         <option  th:value="1">Sedan</option>
+				                         <option  th:value="2">Pickup</option>
+				                  	  </select>
+			                        </div>
+			                      </div>          
+			                      <div class="col-md-4">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Tipo de Transmicion</label>
+			                          <select th:field="${vehiculo.transmicion}" class="form-control" disabled>
+				                         <option  th:value="1">Estandar</option>
+				                         <option  th:value="2">Automatica</option>
+				                  	  </select>
+			                        </div>
+			                      </div>
+			                      <div class="col-md-4">
+			                        <label class="bmd-label-floating">Estado</label>
+			                          <select th:field="${vehiculo.estado}" class="form-control" disabled>
+				                         <option  th:value="1">Activo</option>
+				                         <option  th:value="2">Inicactivo</option>
+				                  	  </select>
+			                      </div>
+			                    </div>
+			                    <div style="margin-left:430px">
+			                    <button type="submit" class="btn btn-danger">Eliminar Vehiculo</button> 
+			                   <!--  <a th:href="@{'/delVehiculo/'+${vehiculo.id}}" class="btn btn-danger">Del</a>    -->
+			                    </div>
+			                    <div class="clearfix"></div>
+			                  </form>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
       </div>
       <footer class="footer">
         <div class="container-fluid">

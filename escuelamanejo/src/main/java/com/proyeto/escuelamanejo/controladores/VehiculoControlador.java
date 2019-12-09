@@ -68,16 +68,34 @@ public class VehiculoControlador {
 	}
 	
 	// Ruta get /eliminar/{id}
-	@GetMapping("/eliminarVehiculo/{id}")
-	public String eliminar(@PathVariable("id")int id, RedirectAttributes redirectAttrs) {
-		Vehiculo vehiculo = repo.findById(id).get();
-		vehiculo.setEstado(2);
-		repo.save(vehiculo);
+		@GetMapping("/eliminarVehiculo/{id}")
+		public String traer(@PathVariable("id")int id,Model model) {
+			model.addAttribute("vehiculo", repo.findById(id));
+			return "eliminarAuto";
+		}
 		
-		redirectAttrs
-        .addFlashAttribute("mensaje", "Vehiculo Eliminado(inactivo)")
-        .addFlashAttribute("clase", "primary");
+	
+	// Ruta get /delete/{id}
+	@PostMapping("/delVehiculo")
+	public String eliminar(@Valid @ModelAttribute("vehiculo")Vehiculo vehiculo, BindingResult result) {
+		int Id = vehiculo.getId();
+		Vehiculo eliminar = repo.findById(Id).get();
+		eliminar.setEstado(2);
+		repo.save(eliminar);
 		
 		return "redirect:/verAutomoviles";
 	}
+	/*	@PostMapping("/delVehiculo")
+		public String eliminar(@ModelAttribute("vehiculo")Vehiculo vehiculo, RedirectAttributes redirectAttrs) {
+			//Vehiculo vehiculo = repo.findById().get();
+			vehiculo.setEstado(2);
+			repo.save(vehiculo);
+			
+			redirectAttrs
+	        .addFlashAttribute("mensaje", "Vehiculo Eliminado(inactivo)")
+	        .addFlashAttribute("clase", "primary");
+			
+			return "redirect:/verAutomoviles";
+		} */
 }
+
