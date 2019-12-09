@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.proyeto.escuelamanejo.entidades.Alumno;
+import com.proyeto.escuelamanejo.entidades.Vehiculo;
 import com.proyeto.escuelamanejo.repositorios.RepoAlumno;
 
 @Controller
@@ -70,11 +71,20 @@ public class AlumnoControlador {
 	}
 	
 	// Ruta get /eliminar/{id}
-	@GetMapping("/EliminarAlumno/{id}")
-	public String eliminar(@PathVariable("id")int id) {
-		Alumno alumno = repo.findById(id).get();
-		alumno.setEstado(2);
-		repo.save(alumno);
-		return "redirect:/verAlumnos";
+	@GetMapping("/eliminarAlumno/{id}")
+	public String traer(@PathVariable("id")int id,Model model) {
+		model.addAttribute("alumno", repo.findById(id));
+		return "eliminarAlumno";
 	}
+	
+	// Ruta get /delete/{id}
+		@PostMapping("/delAlumno")
+		public String eliminar(@Valid @ModelAttribute("alumno")Alumno alumno, BindingResult result) {
+			int Id = alumno.getId();
+			Alumno eliminar = repo.findById(Id).get();
+			eliminar.setEstado(2);
+			repo.save(eliminar);
+			
+			return "redirect:/verAlumnos";
+		}
 }

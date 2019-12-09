@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.proyeto.escuelamanejo.entidades.Instructor;
 import com.proyeto.escuelamanejo.entidades.Servicio;
 import com.proyeto.escuelamanejo.repositorios.RepoServicio;
 import com.proyeto.escuelamanejo.repositorios.RepoVehiculo;
@@ -81,12 +82,30 @@ public class ServicioControlador {
 			return "redirect:/verServicios";
 		}
 		
-		//Ruta get/ (eliminar)
+		/*//Ruta get/ (eliminar)
 		@GetMapping("/eliminarServicio/{id}")
 		public String eliminar(@PathVariable("id")int id) {
 			Servicio servicio = reposervicio.findById(id).get();
 			servicio.setEstado(2);
 			reposervicio.save(servicio);
+			return "redirect:/verServicios";
+		}*/
+		// Ruta get /eliminar/{id}
+		@GetMapping("/eliminarServicio/{id}")
+		public String traer(@PathVariable("id")int id,Model model) {
+			model.addAttribute("servicio", reposervicio.findById(id));
+			model.addAttribute("vehiculos", repovehiculo.findAll());
+			return "eliminarServicio";
+		}
+			
+	// Ruta get /delete/{id}
+		@PostMapping("/delServicio")
+		public String eliminar(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
+			int Id = servicio.getId();
+			Servicio eliminar = reposervicio.findById(Id).get();
+			eliminar.setEstado(2);
+			reposervicio.save(eliminar);
+			
 			return "redirect:/verServicios";
 		}
 }

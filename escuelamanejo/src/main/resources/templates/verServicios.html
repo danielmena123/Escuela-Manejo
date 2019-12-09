@@ -100,7 +100,7 @@
                 <div class="container">
 					 <table class="table table-hover table-bordered"> 
 					 	<thead>
-					 		<tr>
+					 		<tr class="table-success">
 					 			<th>N°</th>
 					 			<th>Nombre</th>
 					 			<th>N° Horas</th>
@@ -114,7 +114,7 @@
 					 		</tr>		 		
 					 	</thead>
 					 	<tbody>
-					 		<tr th:each="s : ${servicios}">
+					 		<tr th:each="s : ${servicios}" th:if="${s.estado == 1}">
 					 			<td th:text="${s.id}"></td>
 					 			<td th:text="${s.nombre}"></td>
 					 			<td th:text="${s.cantidadhoras}"></td>
@@ -136,10 +136,53 @@
               </div>
             </div>
           </div>
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h2 class="card-title">Lista de Servicios</h2>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="container">
+					 <table class="table table-hover table-bordered"> 
+					 	<thead>
+					 		<tr class="table-danger">
+					 			<th>N°</th>
+					 			<th>Nombre</th>
+					 			<th>N° Horas</th>
+					 			<th>Hora Practica</th>
+					 			<th>Hora Teorica</th>
+					 			<th>Numero Clases</th>
+					 			<th>Precio</th>
+					 			<th>Vehiculo</th>
+					 			<th>Estado</th>
+					 			<th>Acciones</th>
+					 			
+					 		</tr>		 		
+					 	</thead>
+					 	<tbody>
+					 		<tr th:each="s : ${servicios}" th:if="${s.estado == 2}">
+					 			<td th:text="${s.id}"></td>
+					 			<td th:text="${s.nombre}"></td>
+					 			<td th:text="${s.cantidadhoras}"></td>
+					 			<td th:text="${s.horaspracticas}"></td>
+					 			<td th:text="${s.horasteoricas}"></td>
+					 			<td th:text="${s.clases}"></td>
+					 			<td th:text="${s.precio}"></td>
+					 			<td th:each="i : ${s.vehiculo}" th:text="${i.placa}"></td>
+					 			<td th:text="Inactivo"></td>
+					 			<td>
+			                        <!-- /editar/1 -->
+			                        <a th:href="@{'/editarServicio/'+${s.id}}" class="btn btn-success">Edit</a>
+		                        </td>
+					 		</tr>
+					 	</tbody>
+					 </table>
+			    </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
