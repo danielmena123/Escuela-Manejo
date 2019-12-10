@@ -118,14 +118,25 @@ public class ContratoControlador {
 		repocontrato.save(contrato);
 		return "redirect:/verContratos";
 	}
-	 //Ruta Get/ (eliminar)
+	
+	/*********** Modifique esto **************/
 	@GetMapping("/EliminarContrato/{id}")
-	public String eliminar(@PathVariable("id")int id) {
+	public String eliminar(@PathVariable("id")int id, Model model) {
+		model.addAttribute("servicios", reposervicio.findAll());
+		model.addAttribute("alumnos", repoalumno.findAll());
+		model.addAttribute("instructores", repoinstructor.findAll());
+		model.addAttribute("contrato", repocontrato.findById(id));
+		return "eliminarContrato";
+	}
+	 //Ruta Get/ (eliminar)
+	@PostMapping("/delContrato")
+	public String del(@PathVariable("id")int id) {
 		Contrato contrato = repocontrato.findById(id).get();
 		contrato.setEstado(2);
 		repocontrato.save(contrato);
 		return "redirect:/verContratos";
 	}
+	/*********** Hasta aqui **************/
 	
 	//Ruta Get/ (pagos)
 	@GetMapping("/verPagosContrato/{id}")
