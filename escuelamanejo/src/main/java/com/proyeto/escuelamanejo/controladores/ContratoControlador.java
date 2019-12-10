@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.proyeto.escuelamanejo.entidades.Alumno;
 import com.proyeto.escuelamanejo.entidades.Contrato;
 import com.proyeto.escuelamanejo.entidades.Pago;
 import com.proyeto.escuelamanejo.entidades.Servicio;
@@ -129,11 +130,21 @@ public class ContratoControlador {
 		return "eliminarContrato";
 	}
 	 //Ruta Get/ (eliminar)
-	@PostMapping("/delContrato")
+	/*@PostMapping("/delContrato")
 	public String del(@PathVariable("id")int id) {
 		Contrato contrato = repocontrato.findById(id).get();
 		contrato.setEstado(2);
 		repocontrato.save(contrato);
+		return "redirect:/verContratos";
+	}*/
+	
+	@PostMapping("/delContrato")
+	public String del(@Valid @ModelAttribute("contrato")Contrato contrato, BindingResult result) {
+		int Id = contrato.getId();
+		Contrato eliminar = repocontrato.findById(Id).get();
+		eliminar.setEstado(2);
+		repocontrato.save(eliminar);
+		
 		return "redirect:/verContratos";
 	}
 	/*********** Hasta aqui **************/
@@ -243,4 +254,5 @@ public class ContratoControlador {
 		return "editarPago";
 	}**/
 
+	
 }

@@ -140,13 +140,13 @@
 			                      <div class="col-md-4">
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Hora Inicio</label>
-			                          <input type="Time"   name="horainicio"  id="horainicio" class="form-control">
+			                          <input type="text" th:field="${contrato.horainicio}" name="horainicio"  id="horainicio" class="form-control" disabled>
 			                        </div>
 			                      </div>
 			                      <div class="col-md-4">
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Hora Final</label>
-			                          <input type="Time"  name="horafinal" id="horafinal" class="form-control">
+			                          <input type="text" th:field="${contrato.horafinal}" name="horafinal" id="horafinal" class="form-control" disabled>
 			                        </div>
 			                      </div>
 			                    </div>
@@ -154,8 +154,7 @@
 			                      <div class="col-md-4">
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Instructor</label>
-			                          	<select name="instructor" class="form-control">
-				                          	<option>Seleccionar Instructor</option>
+			                          	<select name="instructor" class="form-control" disabled>
 				                         	<option th:each="i : ${instructores}" th:value="${i.id}" th:text="${i.nombre + i.apellido}" th:if="${i.estado == 1}" th:selected="true" disabled>
 				                         	
 				                  		</select>
@@ -165,8 +164,8 @@
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Servicio</label>
 			                          <!-- <input type="text" th:field="${contrato.servicio.nombre}" name="servicio" class="form-control" disabled>  -->
-			                          <select name="instructor" class="form-control">
-			                          <option th:each="s : ${servicios}" th:value="${s.id}" th:text="${s.nombre}" th:if="${s.estado == 1}" th:selected="true" disabled>
+			                          <select name="instructor" class="form-control" disabled>
+			                          <option th:each="s : ${servicios}" th:value="${s.id}" th:text="${s.nombre}" th:if="${s.estado == 1}" th:selected="true" >
 			                          </option>
 			                          </select>
 			                        </div>
@@ -174,15 +173,16 @@
 			                      <div class="col-md-4">
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Estado</label>
-			                          	<select th:field="${contrato.estado}" class="form-control">
+			                          	<select th:field="${contrato.estado}"  class="form-control">
 				                         	<option value="1">Activo</option>
 				                         	<option value="2">Inactivo</option>
 				                  		</select>
 			                        </div>
 			                      </div>
-			                    </div><div style="margin-left:430px">
-			                    <button type="submit" class="btn btn-danger">Eliminar Vehiculo</button> 
-			                   <!--  <a th:href="@{'/delVehiculo/'+${vehiculo.id}}" class="btn btn-danger">Del</a>    -->
+			                    </div><div style="margin-left:350px">
+			                    <button type="submit" class="btn btn-danger">Eliminar Contrato</button> 
+			                   <!--  <a th:href="@{'/delVehiculo/'+${vehiculo.id}}" class="btn btn-danger">Del</a>        -->
+			                   <a href="/volver2" class="btn btn-primary">Volver</a>
 			                    </div>
 			                    <div class="clearfix"></div>
 			                  </form>

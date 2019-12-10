@@ -155,13 +155,13 @@
 					 			<th>Servicio</th>
 					 			<th>Instructor</th>
 					 			<th>Alumno</th>
-					 			<th>Estado</th>
+					 			<th>Estados</th>
 					 			<th>Acciones</th>
 					 			
 					 		</tr>		 		
 					 	</thead>
 					 	<tbody>
-					 		<tr th:each="contrato : ${contratos}" th:if="${contrato.estado == 2}">
+					 		<tr th:each="contrato : ${contratos}" th:if="${contrato.estado != 1}">
 					 			<td th:text="${contrato.id}"></td>
 					 			<td th:text="${#dates.format(contrato.fechacontrato, 'dd-MM-yyyy')}"></td>
 					 			<td th:text="${contrato.montofinal}"></td>
@@ -170,7 +170,8 @@
 					 			<td th:each="i : ${contrato.servicio}" th:text="${i.nombre}"></td>
 					 			<td th:each="i : ${contrato.instructor}" th:text="${i.nombre}"></td>
 					 			<td th:each="i : ${contrato.alumno}" th:text="${i.nombre}"></td>
-					 			<td th:text="Inactivo"></td>
+					 			<td th:text="Inactivo" th:if="${contrato.estado == 2}"></td>
+					 			<td th:text="Completado" th:if="${contrato.estado == 3}"></td>
 					 			<td>
 			                        <!-- /editar/1 -->
 			                        <a th:href="@{'/EditarContrato/'+${contrato.id}}" class="btn btn-success" th:if="${contrato.estado != 3}">Edit</a> 
