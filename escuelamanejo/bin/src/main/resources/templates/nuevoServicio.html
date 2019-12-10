@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Eliminar Alumno
+    Nuevo Servicio
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -17,6 +17,23 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  
+  <script type="text/javascript">
+	$(document).ready(function(){ 
+	       $("#cantidadhoras").keyup(function(){
+	    	   var choras = $('#cantidadhoras').val();
+	   		var clases = choras/2;
+	   		$('#clases').val(clases);
+	       }); 
+	    }); 
+	
+	function PasarValor()
+	{
+		var ch= document.getElementById("cantidadhoras").value ;
+		var cl = ch/2;
+		document.getElementById("clases").value = cl;
+	}
+  </script>
 </head>
 
 <body class="">
@@ -40,7 +57,7 @@
               <p>Inicio</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="/verAlumnos">
               <i class="material-icons">person</i>
               <p>Alumnos</p>
@@ -52,13 +69,13 @@
               <p>Instructores</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/verAutomoviles">
               <i class="material-icons">bubble_chart</i>
               <p>Automoviles</p>
             </a>
           </li>
-          <li class="nav-item  ">
+          <li class="nav-item active ">
             <a class="nav-link" href="/verServicios">
               <i class="material-icons">library_books</i>
               <p>Servicios</p>
@@ -105,94 +122,130 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-      	<div class="container">
-			<div class="row">
-            	<div class="col-md-12">
-                	<div class="card">
-                		<div class="card-header card-header-danger">
-                  			<h4 class="card-title">Eliminar Alumno</h4>
-                  			<p class="card-category"></p>
-                		</div>
-                		<div class="card-body">
-                			<form method="post" action="/delAlumno" modelAttribute="alumno">
-                  				<div class="row col-md-12">
-	                  				<div class="col-md-1" style="margin-left:430px">
-				                  		<div class="form-group">
-				                  		<label class="bmd-label-floating">Id</label>
-				                  		<input type="hidden" th:field="${alumno.id}"  class="form-control">
-				                  		<input type="text" th:field="${alumno.id}"  class="form-control" disabled>
-				                  		</div>
-				                  	</div>
-                  				</div>
-				 				<div class="row col-md-12">
-			                    	<div class="col-md-4">
-			                        	<div class="form-group">
-				                          <label class="bmd-label-floating">Nombre</label>
-				                          <input type="text" th:field="${alumno.nombre}" class="form-control" disabled>
-				                        </div>
-			                        </div>
-			                    	<div class="col-md-4">
-				                        <div class="form-group">
-				                          <label class="bmd-label-floating">Apellido</label>
-				                          <input type="text" th:field="${alumno.apellido}" class="form-control" disabled>
-				                        </div>
-			                    	</div>
-			                    	<div class="col-md-4">
-			                        	<div class="form-group">
-				                          <label class="bmd-label-floating">DUI o Carnet</label>
-				                          <input type="text" th:field="${alumno.dui}" class="form-control" disabled>
-				                        </div>
-			                        </div>  
-			                    </div>  
-			                    <div class="row col-md-12">
-			                        <div class="col-md-4">
-			                        	<div class="form-group">
-				                          <label class="bmd-label-floating">Telefono</label>
-				                          <input type="text" th:field="${alumno.telefono}" class="form-control" disabled>
-				                        </div>
-			                      	</div>
-				                	<div class="col-md-4">
-				                        <div class="form-group">
-				                          <label class="bmd-label-floating">Telefono</label>
-				                          <input type="text" th:field="${alumno.telefono}" class="form-control" disabled>
-				                        </div>
-				                    </div>
-				                    <div class="col-md-4">
-				                        <div class="form-group">
-				                          <label class="bmd-label-floating">Edad</label>
-				                          <input type="text" th:field="${alumno.edad}" class="form-control" disabled>
-				                        </div>
-                      				</div>
-			                    </div>
-			                    <div class="row col-md-12">
-			                      <div class="col-md-8">
+                <div class="container">
+					 <div class="row">
+			            <div class="col-md-12">
+			              <div class="card">
+			                <div class="card-header card-header-info">
+			                  <h4 class="card-title">Nuevo Servicio</h4>
+			                  <p class="card-category">Por favor complete los campos requeridos</p>
+			                </div>
+			                <div class="card-body">
+			                  <form method="post" action="registrarServicio" modelAttribute="servicio">
+			                    <div class="row">
+			                      <div class="col-md-6">
 			                        <div class="form-group">
-			                          <label class="bmd-label-floating">Direccion</label>
-			                          <input type="text" th:field="${alumno.direccion}" class="form-control" disabled>
+			                        <label class="bmd-label-floating">Nombre Servicio</label>
+			                          <input type="text" name="nombre" class="form-control">
 			                        </div>
 			                      </div>
-			                      <div class="col-md-4">
-			                          <select th:field="${alumno.estado}" class="form-control" disabled>
-				                         <option  th:value="1">Activo</option>
-				                         <option  th:value="2">Inicactivo</option>
-				                  	  </select>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Cantidad de Horas</label>
+			                          <input type="number" name="cantidadhoras" id="cantidadhoras" class="form-control" onkeyup="PasarValor();">
+			                        </div>
+			                      </div>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Nº Horas Practicas</label>
+			                          <br>
+			                          <input type="number" name="horaspracticas" id="horaspracticas" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>                    	
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Nº Horas Teoricas</label>
+			                          <br>
+			                          <input type="number" name="horasteoricas" id="horasteoricas" class="form-control">
+			                        </div>
 			                      </div>
 			                    </div>
-			                    <div style="margin-left:430px">
-			                    <button type="submit" class="btn btn-danger">Eliminar Alumno</button> 
-			                   <!--  <a th:href="@{'/delVehiculo/'+${vehiculo.id}}" class="btn btn-danger">Del</a>    -->
-			                   
-			                   <a href="/volver" class="btn btn-primary">Volver</a>
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Numero de Clases</label>
+			                          <br>
+			                          <input type="number" name="clases" id="clases" class="form-control" onchange="" disabled>
+			                        </div>
+			                      </div>
 			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Vehiculo</label>
+			                          	<select name="vehiculo" class="form-control" id="vehiculo">
+				                          	<option>Seleccionar Vehiculo</option>
+				                         	<option th:each="s : ${vehiculos}" th:value="${s.id}" th:text="${s.placa}" th:if="${s.estado == 1}"/>
+				                  		</select>
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                          <label class="bmd-label-floating">Precio $</label>
+			                          <input type="text" name="precio" id="precio" class="form-control">
+			                        </div>
+			                      </div>
+			                    </div>
+			                    <div class="row">
+			                      <div class="col-md-6">
+			                        
+			                          
+			                          <input name="estado" value="1" type="hidden"></input>
+			                       
+			                      </div>
+			                    </div>
+			                    <button type="submit" class="btn btn-success">Registrar Servicio</button>
 			                    <div class="clearfix"></div>
-                  			</form>
-                		</div>
-              		</div>
-            	</div>
-          	</div>
-        </div>
+			                  </form>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
       </div>
-      
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com">
+                  Creative Tim
+                </a>
+              </li>
+              <li>
+                <a href="https://creative-tim.com/presentation">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
   <div class="fixed-plugin">
@@ -307,6 +360,17 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
+  	$('#service').on('change', function(){
+  		$.ajax({
+  			url: 'numeroclase',
+  			type: 'POST',
+  			data: { horainicio = $("#horainicio").val(), horafinal = $("#horafinal").val() , servicio = $("#service").val() }
+  			success: function(e){
+  				$('#montofinal').val(e);
+  			}
+  		});
+  	});
+  
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');

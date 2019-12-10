@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" >
 
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>
     Listado Alumnos
   </title>
@@ -85,7 +85,7 @@
           </button>
         </div>
       </nav>
-      <!-- End Navbar -->
+      <!-- End Navbar  -->
       <div class="content">
         <div class="container-fluid">
           <div class="card">
@@ -96,6 +96,7 @@
               <div id="typography">
                 <div class="card-title">
 					<a href="nuevoAlumno" class="btn btn-primary">Nuevo Alumno</a>
+					<a href="/crearPDF" class="btn btn-success">Reporte Alumnos</a>
                 </div>
                 <a href="/verAlumno">
 	                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
@@ -104,9 +105,9 @@
 					</div>
 				</a>
                 <div class="container">
-					 <table class="table table-hover table-bordered"> 
+					 <table class="table table-hover table-bordered" id="alumnos"> 
 					 	<thead>
-					 		<tr>
+					 		<tr class="table-success">
 					 			<th>N°</th>
 					 			<th>Nombres</th>
 					 			<th>Apellidos</th>
@@ -119,7 +120,7 @@
 					 		</tr>		 		
 					 	</thead>
 					 	<tbody>
-					 		<tr th:each="a : ${alumnos}">
+					 		<tr th:each="a : ${alumnos}" th:if="${a.estado == 1}" >
 					 			<td th:text="${a.id}"></td>
 					 			<td th:text="${a.nombre}"></td>
 					 			<td th:text="${a.apellido}"></td>
@@ -131,7 +132,53 @@
 					 			<td>
 			                        <!-- /editar/1 -->
 			                        <a th:href="@{'/EditarAlumno/'+${a.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/EliminarAlumno/'+${a.id}}" class="btn btn-danger"th:if="${a.estado == 1}">Del</a>
+			                        <a th:href="@{'/eliminarAlumno/'+${a.id}}" class="btn btn-danger"th:if="${a.estado == 1}">Del</a>
+		                        </td>
+					 		</tr>
+					 	</tbody>
+					 </table>
+			    </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h2 class="card-title">Lista de Alumnos Inactivos(Eliminados)</h2>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+                <div class="card-title">
+                </div>
+                <div class="container">
+					 <table class="table table-hover table-bordered"> 
+					 	<thead>
+					 		<tr class="table-danger">
+					 			<th>N°</th>
+					 			<th>Nombres</th>
+					 			<th>Apellidos</th>
+					 			<th>N° DUI o Carnet</th>
+					 			<th>Telefono</th>
+					 			<th>Edad</th>
+					 			<th>Direccion</th>
+					 			<th>Estado</th>
+					 			<th>Acciones</th>
+					 			
+					 		</tr>		 		
+					 	</thead>
+					 	<tbody>
+					 		<tr th:each="a : ${alumnos}" th:if="${a.estado == 2}" >
+					 			<td th:text="${a.id}"></td>
+					 			<td th:text="${a.nombre}"></td>
+					 			<td th:text="${a.apellido}"></td>
+					 			<td th:text="${a.dui}"></td>
+					 			<td th:text="${a.telefono}"></td>
+					 			<td th:text="${a.edad}"></td>
+					 			<td th:text="${a.direccion}"></td>
+					 			<td th:text="Inactivo"></td>
+					 			
+					 			<td>
+			                        <!-- /editar/1 -->
+			                        <a th:href="@{'/EditarAlumno/'+${a.id}}" class="btn btn-success">Edit</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>
