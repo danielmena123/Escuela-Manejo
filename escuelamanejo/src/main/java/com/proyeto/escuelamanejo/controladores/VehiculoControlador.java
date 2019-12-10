@@ -85,6 +85,11 @@ public class VehiculoControlador {
 		
 		return "redirect:/verAutomoviles";
 	}
+	
+	@GetMapping("/volver4")
+	public String volver4() {
+		return "redirect:/verAutomoviles";
+	}
 	/*	@PostMapping("/delVehiculo")
 		public String eliminar(@ModelAttribute("vehiculo")Vehiculo vehiculo, RedirectAttributes redirectAttrs) {
 			//Vehiculo vehiculo = repo.findById().get();

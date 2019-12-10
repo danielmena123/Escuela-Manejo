@@ -87,4 +87,12 @@ public class AlumnoControlador {
 			
 			return "redirect:/verAlumnos";
 		}
+		
+		// Ruta get /volver de nuevo Alumno a alumno
+				@GetMapping("/volver")
+				public String volver() {
+					return "redirect:/verAlumnos";
+				}
+
+		
 }

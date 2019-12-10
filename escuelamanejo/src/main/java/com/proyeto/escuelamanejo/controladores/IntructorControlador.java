@@ -72,4 +72,9 @@ public class IntructorControlador {
 				
 				return "redirect:/verInstructores";
 			}
+			
+			@GetMapping("/volver5")
+			public String volver5() {
+				return "redirect:/verInstructores";
+			}
 	}

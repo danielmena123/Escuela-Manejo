@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>
-    Eliminar Alumno
+    Eliminar Instructor
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -110,17 +110,17 @@
             	<div class="col-md-12">
                 	<div class="card">
                 		<div class="card-header card-header-danger">
-                  			<h4 class="card-title">Eliminar Alumno</h4>
+                  			<h4 class="card-title">Eliminar Instructor</h4>
                   			<p class="card-category"></p>
                 		</div>
                 		<div class="card-body">
-                			<form method="post" action="/delAlumno" modelAttribute="alumno">
+                			<form method="post" action="/delInstructor" modelAttribute="instructor">
                   				<div class="row col-md-12">
 	                  				<div class="col-md-1" style="margin-left:430px">
 				                  		<div class="form-group">
 				                  		<label class="bmd-label-floating">Id</label>
-				                  		<input type="hidden" th:field="${alumno.id}"  class="form-control">
-				                  		<input type="text" th:field="${alumno.id}"  class="form-control" disabled>
+				                  		<input type="hidden" th:field="${instructor.id}"  class="form-control">
+				                  		<input type="text" th:field="${instructor.id}"  class="form-control" disabled>
 				                  		</div>
 				                  	</div>
                   				</div>
@@ -128,19 +128,19 @@
 			                    	<div class="col-md-4">
 			                        	<div class="form-group">
 				                          <label class="bmd-label-floating">Nombre</label>
-				                          <input type="text" th:field="${alumno.nombre}" class="form-control" disabled>
+				                          <input type="text" th:field="${instructor.nombre}" class="form-control" disabled>
 				                        </div>
 			                        </div>
 			                    	<div class="col-md-4">
 				                        <div class="form-group">
 				                          <label class="bmd-label-floating">Apellido</label>
-				                          <input type="text" th:field="${alumno.apellido}" class="form-control" disabled>
+				                          <input type="text" th:field="${instructor.apellido}" class="form-control" disabled>
 				                        </div>
 			                    	</div>
 			                    	<div class="col-md-4">
 			                        	<div class="form-group">
 				                          <label class="bmd-label-floating">DUI o Carnet</label>
-				                          <input type="text" th:field="${alumno.dui}" class="form-control" disabled>
+				                          <input type="text" th:field="${instructor.dui}" class="form-control" disabled>
 				                        </div>
 			                        </div>  
 			                    </div>  
@@ -148,19 +148,19 @@
 			                        <div class="col-md-4">
 			                        	<div class="form-group">
 				                          <label class="bmd-label-floating">Telefono</label>
-				                          <input type="text" th:field="${alumno.telefono}" class="form-control" disabled>
+				                          <input type="text" th:field="${instructor.telefono}" class="form-control" disabled>
 				                        </div>
 			                      	</div>
 				                	<div class="col-md-4">
 				                        <div class="form-group">
 				                          <label class="bmd-label-floating">Telefono</label>
-				                          <input type="text" th:field="${alumno.telefono}" class="form-control" disabled>
+				                          <input type="text" th:field="${instructor.telefono}" class="form-control" disabled>
 				                        </div>
 				                    </div>
 				                    <div class="col-md-4">
 				                        <div class="form-group">
 				                          <label class="bmd-label-floating">Edad</label>
-				                          <input type="text" th:field="${alumno.edad}" class="form-control" disabled>
+				                          <input type="text" th:field="${instructor.edad}" class="form-control" disabled>
 				                        </div>
                       				</div>
 			                    </div>
@@ -168,21 +168,19 @@
 			                      <div class="col-md-8">
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Direccion</label>
-			                          <input type="text" th:field="${alumno.direccion}" class="form-control" disabled>
+			                          <input type="text" th:field="${instructor.direccion}" class="form-control" disabled>
 			                        </div>
 			                      </div>
 			                      <div class="col-md-4">
-			                          <select th:field="${alumno.estado}" class="form-control" disabled>
+			                          <select th:field="${instructor.estado}" class="form-control" disabled>
 				                         <option  th:value="1">Activo</option>
 				                         <option  th:value="2">Inicactivo</option>
 				                  	  </select>
 			                      </div>
 			                    </div>
 			                    <div style="margin-left:430px">
-			                    <button type="submit" class="btn btn-danger">Eliminar Alumno</button> 
+			                    <button type="submit" class="btn btn-danger">Eliminar Instructor</button> 
 			                   <!--  <a th:href="@{'/delVehiculo/'+${vehiculo.id}}" class="btn btn-danger">Del</a>    -->
-			                   
-			                   <a href="/volver" class="btn btn-primary">Volver</a>
 			                    </div>
 			                    <div class="clearfix"></div>
                   			</form>
@@ -192,7 +190,41 @@
           	</div>
         </div>
       </div>
-      
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com">
+                  Creative Tim
+                </a>
+              </li>
+              <li>
+                <a href="https://creative-tim.com/presentation">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
   <div class="fixed-plugin">

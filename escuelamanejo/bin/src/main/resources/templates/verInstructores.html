@@ -106,7 +106,7 @@
                 <div class="container">
 					 <table class="table table-hover table-bordered"> 
 					 	<thead>
-					 		<tr>
+					 		<tr class="table-success">
 					 			<th>N°</th>
 					 			<th>Nombres</th>
 					 			<th>Apellidos</th>
@@ -119,7 +119,7 @@
 					 		</tr>		 		
 					 	</thead>
 					 	<tbody>
-					 		<tr th:each="i : ${instructores}">
+					 		<tr th:each="i : ${instructores}" th:if="${i.estado == 1}" >
 					 			<td th:text="${i.id}"></td>
 					 			<td th:text="${i.nombre}"></td>
 					 			<td th:text="${i.apellido}"></td>
@@ -131,11 +131,59 @@
 					 			<td>
 			                        <!-- /editar/1 -->
 			                        <a th:href="@{'/EditarInstructor/'+${i.id}}" class="btn btn-success">Edit</a> || 
-			                        <a th:href="@{'/EliminarInstructor/'+${i.id}}" class="btn btn-danger" th:if="${i.estado == 1}">Del</a>
+			                        <a th:href="@{'/eliminarInstructor/'+${i.id}}" class="btn btn-danger" th:if="${i.estado == 1}">Del</a>
 		                        </td>
 					 		</tr>
 					 	</tbody>
 					 </table>
+			    </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h2 class="card-title">Lista de Instructores Inactivos(Eliminados)</h2>
+            </div>
+            <div class="card-body">
+              <div id="typography">
+			    <div class="card-title">
+                </div>
+					 <table class="table table-hover table-bordered"> 
+					 	<thead>
+					 		<tr class="table-danger">
+					 			<th>N°</th>
+					 			<th>Nombres</th>
+					 			<th>Apellidos</th>
+					 			<th>N° DUI o Carnet</th>
+					 			<th>Telefono</th>
+					 			<th>Edad</th>
+					 			<th>Direccion</th>
+					 			<th>Estado</th>
+					 			<th>Acciones</th>
+					 			
+					 			
+					 		</tr>		 		
+					 	</thead>
+					 	<tbody>
+					 		<tr th:each="i : ${instructores}" th:if="${i.estado == 2}">
+					 			<td th:text="${i.id}"></td>
+					 			<td th:text="${i.nombre}"></td>
+					 			<td th:text="${i.apellido}"></td>
+					 			<td th:text="${i.dui}"></td>
+					 			<td th:text="${i.telefono}"></td>
+					 			<td th:text="${i.edad}"></td>
+					 			<td th:text="${i.direccion}"></td>
+					 			<td th:text="Inactivo"></td>
+					 			
+					 			
+					 			<td>
+			                        <!-- /editar/1 -->
+			                        <a th:href="@{'/EditarInstructor/'+${i.id}}" class="btn btn-success">Edit</a>
+		                        </td>
+					 		</tr>
+					 	</tbody>
+					 </table>
+					 </div></div></div>
 			    </div>
               </div>
             </div>

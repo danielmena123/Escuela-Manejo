@@ -44,6 +44,11 @@ public class ServicioControlador {
 		return "redirect:/verServicios";
 	}
 	
+	@GetMapping("/volver3")
+	public String volver3() {
+		return "redirect:/verServicios";
+	}
+	
 	/* //Ruta get/ (editar)
 	@GetMapping("/editarServicio/{id}")
 	public String editar(@PathVariable("id")int id, Model model ) {

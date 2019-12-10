@@ -190,6 +190,13 @@ public class ContratoControlador {
 		return String.valueOf(SaldoAnterior);
 	}
 	
+	@GetMapping("/volver2")
+	public String volver2() {
+		return "redirect:/verContratos";
+	}
+
+	//Volver de Editar alumno a alumno
+
 	//POST/ ActualizarPago
 	/**@RequestMapping(value = "/actualizarPago", method = RequestMethod.POST)
 	public String actualizarpago(@RequestParam(value="abono") String abono, @RequestParam(value="id") int id, Model model) {
