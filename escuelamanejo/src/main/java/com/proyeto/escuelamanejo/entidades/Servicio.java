@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Servicio {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NotEmpty
 	@Column(name="Nombre")

@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Contrato {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name="Fecha_Contrato")
 	private Date fechacontrato;

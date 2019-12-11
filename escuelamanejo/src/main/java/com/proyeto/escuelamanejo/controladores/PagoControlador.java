@@ -56,4 +56,9 @@ public class PagoControlador {
 		return "redirect:/Pagos";
 	}
 	
+	@GetMapping("/volver8")
+	public String volver8() {
+		return "redirect:/verContratos";
+	}
+	
 }

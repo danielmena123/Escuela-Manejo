@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Pago {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NotNull
 	@Column(name="Fecha_Pago")

@@ -27,6 +27,16 @@
 		var cl = ch/2;
 		document.getElementById("clases").value = cl;
 	}
+	
+	function PasarValor1()
+	{
+		var hp= parseFloat(document.getElementById("horaspracticas").value);
+		var ht= parseFloat(document.getElementById("horasteoricas").value);
+		var c = hp+ht;
+		var o = c/2;
+		document.getElementById("cantidadhoras").value = c;
+		document.getElementById("clases").value = o;
+	}
   </script>
 </head>
 
@@ -127,28 +137,19 @@
 			                <div class="card-body">
 			                  <form method="post" action="/actualizarServicio" modelAttribute="servicio">
 			                    <div class="row">
-			                      <div class="col-md-6">
+			                      <div class="col-md-5">
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Nombre Servicio</label>
 			                        <input type="hidden" th:field="${servicio.id}"  class="form-control">
 			                          <input type="text" th:field="${servicio.nombre}" class="form-control">
 			                        </div>
 			                      </div>
-			                    </div>  
-			                    <div class="row">
-			                      <div class="col-md-6">
-			                        <div class="form-group">
-			                        <label class="bmd-label-floating">Cantidad de Horas</label>
-			                          <input type="number" th:field="${servicio.cantidadhoras}" id="cantidadhoras" class="form-control" onkeyup="PasarValor();">
-			                        </div>
-			                      </div>
-			                    </div>  
+			                    </div> 
 			                    <div class="row">
 			                      <div class="col-md-5">
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Nº Horas Practicas</label>
-			                          <br>
-			                          <input type="number" th:field="${servicio.horaspracticas}" id="horaspracticas" class="form-control">
+			                          <input type="number" th:field="${servicio.horaspracticas}" id="horaspracticas" class="form-control" onkeyup="PasarValor1();">
 			                        </div>
 			                      </div>
 			                    </div>                    	
@@ -156,22 +157,28 @@
 			                      <div class="col-md-5">
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Nº Horas Teoricas</label>
-			                          <br>
-			                          <input type="number" th:field="${servicio.horasteoricas}" id="horasteoricas" class="form-control">
+			                          <input type="number" th:field="${servicio.horasteoricas}" id="horasteoricas" class="form-control" onkeyup="PasarValor1();">
 			                        </div>
 			                      </div>
 			                    </div>
 			                    <div class="row">
 			                      <div class="col-md-5">
 			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Cantidad de Horas</label>
+			                          <input type="number" th:field="${servicio.cantidadhoras}" id="cantidadhoras" class="form-control" >
+			                        </div>
+			                      </div>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Numero de Clases</label>
-			                          <br>
 			                          <input type="number" th:field="${servicio.clases}"  id="clases" class="form-control"  >
 			                        </div>
 			                      </div>
 			                    </div>
 			                    <div class="row">
-			                      <div class="col-md-6">
+			                      <div class="col-md-5">
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Vehiculo</label>
 			                          	<select name="vehiculo" class="form-control" id="vehiculo">
@@ -190,7 +197,7 @@
 			                      </div>
 			                    </div>
 			                    <div class="row">
-			                      <div class="col-md-6">
+			                      <div class="col-md-5">
 			                          <label class="bmd-label-floating">Estado</label>
 			                          <select th:field="${servicio.estado}" class="form-control">
 				                         <option  th:value="1">Activo</option>

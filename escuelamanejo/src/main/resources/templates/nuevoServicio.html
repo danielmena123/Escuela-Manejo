@@ -27,11 +27,29 @@
 	       }); 
 	    }); 
 	
+	
+	      /* $("#horaspracticas").keyup(function(e){
+	    	   var hp = paseInt($('#horaspracticas').val());
+	    	   var ht = paseInt($('#horasteoricas').val());
+	   		var ch = hp+ht;
+	   		$('#cantidadclases').val(ch);
+	       });  */
+	    
+	
 	function PasarValor()
 	{
-		var ch= document.getElementById("cantidadhoras").value ;
+		var ch= paarseFloat(document.getElementById("cantidadhoras").value);
 		var cl = ch/2;
 		document.getElementById("clases").value = cl;
+	}
+	function PasarValor1()
+	{
+		var hp= parseFloat(document.getElementById("horaspracticas").value);
+		var ht= parseFloat(document.getElementById("horasteoricas").value);
+		var c = hp+ht;
+		var o = c/2;
+		document.getElementById("cantidadhoras").value = c;
+		document.getElementById("clases").value = o;
 	}
   </script>
 </head>
@@ -133,18 +151,10 @@
 			                <div class="card-body">
 			                  <form method="post" action="registrarServicio" modelAttribute="servicio">
 			                    <div class="row">
-			                      <div class="col-md-6">
+			                      <div class="col-md-5">
 			                        <div class="form-group">
 			                        <label class="bmd-label-floating">Nombre Servicio</label>
 			                          <input type="text" name="nombre" class="form-control">
-			                        </div>
-			                      </div>
-			                    </div>  
-			                    <div class="row">
-			                      <div class="col-md-6">
-			                        <div class="form-group">
-			                        <label class="bmd-label-floating">Cantidad de Horas</label>
-			                          <input type="number" name="cantidadhoras" id="cantidadhoras" class="form-control" onkeyup="PasarValor();">
 			                        </div>
 			                      </div>
 			                    </div>  
@@ -153,7 +163,8 @@
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Nº Horas Practicas</label>
 			                          <br>
-			                          <input type="number" name="horaspracticas" id="horaspracticas" class="form-control">
+			                          <input type="number" name="horaspracticas" id="horaspracticas" class="form-control" onkeyup="PasarValor1();">
+			                          
 			                        </div>
 			                      </div>
 			                    </div>                    	
@@ -162,7 +173,15 @@
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Nº Horas Teoricas</label>
 			                          <br>
-			                          <input type="number" name="horasteoricas" id="horasteoricas" class="form-control">
+			                          <input type="number" name="horasteoricas" id="horasteoricas" class="form-control" onkeyup="PasarValor1();">
+			                        </div>
+			                      </div>
+			                    </div>  
+			                    <div class="row">
+			                      <div class="col-md-5">
+			                        <div class="form-group">
+			                        <label class="bmd-label-floating">Cantidad de Horas</label>
+			                          <input type="number" name="cantidadhoras" id="cantidadhoras" class="form-control" onkeyup="" >
 			                        </div>
 			                      </div>
 			                    </div>
@@ -171,12 +190,12 @@
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Numero de Clases</label>
 			                          <br>
-			                          <input type="number" name="clases" id="clases" class="form-control" onchange="" disabled>
+			                          <input type="number" name="clases" id="clases" class="form-control" onchange="" >
 			                        </div>
 			                      </div>
 			                    </div>
 			                    <div class="row">
-			                      <div class="col-md-6">
+			                      <div class="col-md-5">
 			                        <div class="form-group">
 			                          <label class="bmd-label-floating">Vehiculo</label>
 			                          	<select name="vehiculo" class="form-control" id="vehiculo">

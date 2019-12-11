@@ -12,7 +12,7 @@ import com.sun.istack.NotNull;
 @Entity
 public class Alumno {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NotEmpty
 	@Column(name="Nombre_Alumno")

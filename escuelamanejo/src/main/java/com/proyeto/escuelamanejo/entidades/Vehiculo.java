@@ -12,7 +12,7 @@ import com.sun.istack.NotNull;
 @Entity
 public class Vehiculo {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@NotEmpty
 	@Column(name="N_Placa")
@@ -51,7 +51,7 @@ public class Vehiculo {
 		this.estado = estado;
 	}
 	
-	//Getters && Setters
+	//Getters &&  Setters
 
 	public int getId() {
 		return id;
