@@ -11,5 +11,4 @@ import com.proyeto.escuelamanejo.entidades.Contrato;
 @Repository
 public interface ContratoRepository extends CrudRepository<Contrato, Integer>{
 
-
 }

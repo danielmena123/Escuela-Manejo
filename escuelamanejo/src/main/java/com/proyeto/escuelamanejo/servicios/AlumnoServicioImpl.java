@@ -34,7 +34,7 @@ public class AlumnoServicioImpl implements AlumnoServicio {
 	
 	@Override
 	public List<Alumno> getAllAlumnos() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method  stub
 		return (List<Alumno>) alumnoRepositorio.findAll();
 	} 
 

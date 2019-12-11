@@ -52,7 +52,7 @@ public class Contrato {
 	@OneToMany(mappedBy = "contrato",cascade = CascadeType.ALL)
 	private List<Pago> pagos = new ArrayList<Pago>();	
 	
-	//Builders
+	//Builder s
 	
 	public Contrato() {}
 	

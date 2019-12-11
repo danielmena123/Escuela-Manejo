@@ -10,5 +10,4 @@ import com.proyeto.escuelamanejo.entidades.Alumno;
 @Repository
 public interface AlumnoRepository extends CrudRepository<Alumno, Integer>{
 
-
 }

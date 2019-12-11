@@ -1,5 +1,5 @@
 package com.proyeto.escuelamanejo.entidades;
-/**/
+/* */
 import java.util.Date;
 
 import javax.persistence.Column;

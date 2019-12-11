@@ -36,7 +36,7 @@ public class Alumno {
 	@Column(name="Estado_Alumno")
 	private int estado;
 	
-	//Builders
+	//Builde rs
 	
 	public Alumno() {}
 
